@@ -204,21 +204,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const img5 = memoriesSection.querySelector('.img-wood-oven');
     const img6 = memoriesSection.querySelector('.img-restaurant');
 
-    // 1. POSIÇÃO INICIAL: A PRIMEIRA PALAVRA E PRIMEIRAS IMAGENS JÁ COMEÇAM NA TELA!
-    // (Para não começar um vazio estranho, com imagens e palavras presentes desde o topo)
-    gsap.set(t1, { y: () => getH() * 0.14 });
+    // 1. POSIÇÃO INICIAL: A PRIMEIRA FRASE ("HÁ SABORES QUE ALIMENTAM") JÁ ESTÁ NA TELA!
+    // Espaçamento vertical harmonioso e compacto (sem abismos vazios)
+    gsap.set(t1, { y: () => getH() * 0.16 });
+    gsap.set(t2, { y: () => getH() * 0.32 });
+    gsap.set(t3, { y: () => getH() * 0.48 });
+
+    // Primeiras imagens laterais já no viewport
     gsap.set(img1, { y: () => getH() * 0.15 });
     gsap.set(img2, { y: () => getH() * 0.32 });
 
-    // Os demais elementos iniciam logo abaixo da viewport prontos para entrarem suavemente
-    gsap.set([t2, t3, t4, t5, t6], { y: () => getH() * 1.05 });
+    // Segunda frase ("OUTROS CRIAM MEMÓRIAS") e imagens seguintes entram suavemente logo abaixo
+    gsap.set([t4, t5, t6], { y: () => getH() * 1.05 });
     gsap.set([img3, img4, img5, img6], { y: () => getH() * 1.05 });
 
     const memoriesTl = gsap.timeline({
       scrollTrigger: {
         trigger: memoriesSection,
         start: 'top top',
-        end: () => (window.innerWidth < 768 ? '+=1000' : '+=1800'),
+        end: () => (window.innerWidth < 768 ? '+=700' : '+=1100'),
         pin: true,
         scrub: 0.5,
         anticipatePin: 0,
@@ -227,99 +231,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // -------------------------------------------------------------
-    // CHOREOGRAFIA DOS TEXTOS (FLUIDOS, CONTÍNUOS, SEM PAUSAS)
+    // CHOREOGRAFIA DOS TEXTOS EM GRUPOS COESOS (SEM VAZIOS)
     // -------------------------------------------------------------
 
-    // T1: "HÁ SABORES" (Já começa na tela, desliza suavemente e sobe)
-    memoriesTl.to(t1, { 
-      y: () => -getH() * 0.45, 
-      ease: 'none', 
-      duration: 22 
-    }, 0);
+    // Grupo 1: "HÁ SABORES QUE ALIMENTAM" sobem juntos suavemente
+    memoriesTl.to(t1, { y: () => -getH() * 0.5, ease: 'none', duration: 18 }, 0);
+    memoriesTl.to(t2, { y: () => -getH() * 0.5, ease: 'none', duration: 18 }, 2);
+    memoriesTl.to(t3, { y: () => -getH() * 0.5, ease: 'none', duration: 18 }, 4);
 
-    // T2: "QUE" (Deslocado à direita; entra da base e sobe suavemente)
-    memoriesTl.fromTo(t2, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => -getH() * 0.45, ease: 'none', duration: 26 }, 
-      6
-    );
-
-    // T3: "ALIMENTAM" (Deslocado à esquerda; sobe continuamente)
-    memoriesTl.fromTo(t3, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => -getH() * 0.45, ease: 'none', duration: 26 }, 
-      13
-    );
-
-    // T4: "OUTROS" (Deslocado à esquerda; entra e se acomoda no terço superior)
+    // Grupo 2: "OUTROS CRIAM MEMÓRIAS" entram coesos e ancoram com espaçamento perfeito
     memoriesTl.fromTo(t4, 
       { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.14, ease: 'power1.out', duration: 28 }, 
-      24
+      { y: () => getH() * 0.18, ease: 'power1.out', duration: 20 }, 
+      10
     );
 
-    // T5: "CRIAM" (Deslocado à direita; entra e se acomoda no meio)
     memoriesTl.fromTo(t5, 
       { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.38, ease: 'power1.out', duration: 26 }, 
-      32
-    );
-
-    // T6: "MEMÓRIAS" (Entra e ancora na base)
-    memoriesTl.fromTo(t6, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.65, ease: 'power1.out', duration: 26 }, 
-      40
-    );
-
-    // -------------------------------------------------------------
-    // CHOREOGRAFIA DAS IMAGENS: ESPALHADAS E SEMPRE PRESENTES
-    // Sem vazios azuis gigantes - fotos acompanham toda a rolagem
-    // -------------------------------------------------------------
-
-    // === FLANCO ESQUERDO ===
-    // 1. IMG 1: Família na mesa (Já começa na tela; sobe e sai pelo topo)
-    memoriesTl.to(img1, { 
-      y: () => -getH() - 100, 
-      ease: 'none', 
-      duration: 22 
-    }, 0);
-
-    // 2. IMG 3: Ingredientes & mesa (Entra logo em t=12; sobe fluidamente pelo flanco esquerdo)
-    memoriesTl.fromTo(img3, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => -getH() - 100, ease: 'none', duration: 28 }, 
+      { y: () => getH() * 0.34, ease: 'power1.out', duration: 20 }, 
       12
     );
 
-    // 3. IMG 5: Forno a lenha (Entra em t=32 e se acomoda com harmonia na composição final)
-    memoriesTl.fromTo(img5, 
+    memoriesTl.fromTo(t6, 
       { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.32, ease: 'power1.out', duration: 26 }, 
-      32
+      { y: () => getH() * 0.50, ease: 'power1.out', duration: 20 }, 
+      14
     );
 
-    // === FLANCO DIREITO ===
-    // 1. IMG 2: Burger close-up (Já começa na tela; sobe e sai pelo topo)
-    memoriesTl.to(img2, { 
-      y: () => -getH() - 100, 
-      ease: 'none', 
-      duration: 26 
-    }, 0);
+    // -------------------------------------------------------------
+    // CHOREOGRAFIA DAS IMAGENS LATERAIS (FLANCOS)
+    // -------------------------------------------------------------
 
-    // 2. IMG 4: Burger & cerveja (Entra em t=16; sobe fluidamente pelo flanco direito)
-    memoriesTl.fromTo(img4, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => -getH() - 100, ease: 'none', duration: 28 }, 
-      16
-    );
+    // Imagens do primeiro grupo sobem
+    memoriesTl.to(img1, { y: () => -getH() - 100, ease: 'none', duration: 18 }, 0);
+    memoriesTl.to(img2, { y: () => -getH() - 100, ease: 'none', duration: 20 }, 0);
 
-    // 3. IMG 6: Salão do Restaurante (Entra em t=38 e se acomoda no flanco direito na cena final)
-    memoriesTl.fromTo(img6, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.38, ease: 'power1.out', duration: 26 }, 
-      38
-    );
+    // Imagens intermediárias
+    memoriesTl.fromTo(img3, { y: () => getH() * 1.05 }, { y: () => -getH() - 80, ease: 'none', duration: 22 }, 8);
+    memoriesTl.fromTo(img4, { y: () => getH() * 1.05 }, { y: () => -getH() - 80, ease: 'none', duration: 22 }, 10);
+
+    // Imagens finais se acomodam com a frase final
+    memoriesTl.fromTo(img5, { y: () => getH() * 1.05 }, { y: () => getH() * 0.26, ease: 'power1.out', duration: 20 }, 14);
+    memoriesTl.fromTo(img6, { y: () => getH() * 1.05 }, { y: () => getH() * 0.34, ease: 'power1.out', duration: 20 }, 16);
   }
 
 });

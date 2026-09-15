@@ -1,14 +1,13 @@
 /**
- * BINGEN PIZZA & BURGER - 0-100% REAL PRELOADER
- * Accurately tracks actual asset loading (fonts, DOM images, page lifecycle)
- * Smoothly interpolates progress using requestAnimationFrame
- * Zero layout impact (fixed overlay with smooth fade-out and scroll unlock)
+ * BINGEN PIZZA & BURGER - LOADER 0-100 REAL & FUNCIONAL
+ * Monitora fontes, imagens do DOM e carregamento da página.
+ * Atualiza suavemente o número de 0 a 100 de forma precisa e limpa.
  */
 
 (function () {
   'use strict';
 
-  // Lock scroll immediately while preloader is active
+  // Bloqueia scroll enquanto o loader estiver na tela
   document.documentElement.classList.add('preloader-locked');
   if (document.body) {
     document.body.classList.add('preloader-locked');
@@ -24,32 +23,15 @@
 
     const counterEl = document.getElementById('preloader-counter');
     const fillEl = document.getElementById('preloader-fill');
-    const statusEl = document.getElementById('preloader-status');
 
     let currentProgress = 0;
     let targetProgress = 0;
     let isFinished = false;
     let animationFrameId = null;
 
-    // Status message thresholds
-    function updateStatusText(p) {
-      if (!statusEl) return;
-      if (p < 25) {
-        statusEl.textContent = 'Aquecendo o forno a lenha...';
-      } else if (p < 55) {
-        statusEl.textContent = 'Fermentando a massa artesanal...';
-      } else if (p < 85) {
-        statusEl.textContent = 'Selecionando os ingredientes...';
-      } else if (p < 100) {
-        statusEl.textContent = 'Finalizando os preparativos...';
-      } else {
-        statusEl.textContent = 'Pronto! Forno aquecido.';
-      }
-    }
-
-    // Collect all elements to monitor
+    // Coleta recursos críticos da página
     const images = Array.from(document.images);
-    const totalAssets = Math.max(1, images.length + 1); // +1 for document fonts
+    const totalAssets = Math.max(1, images.length + 1); // +1 para as fontes
     let loadedAssets = 0;
 
     function onItemLoaded() {
@@ -60,14 +42,14 @@
       }
     }
 
-    // Check fonts
+    // Monitora fontes
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(onItemLoaded).catch(onItemLoaded);
     } else {
       onItemLoaded();
     }
 
-    // Check images
+    // Monitora imagens
     if (images.length === 0) {
       targetProgress = 100;
     } else {
@@ -81,7 +63,7 @@
       });
     }
 
-    // Window load ensures external CSS & scripts are settled
+    // Monitora evento load da janela
     let windowLoaded = false;
     if (document.readyState === 'complete') {
       windowLoaded = true;
@@ -92,14 +74,13 @@
       }, { once: true });
     }
 
-    // Smooth animation loop (lerp)
+    // Interpolação fluida do contador (0 a 100)
     function animate() {
       if (isFinished) return;
 
       const diff = targetProgress - currentProgress;
-      // Smoothly advance toward targetProgress, with minimum increment to avoid freezing
       if (diff > 0) {
-        currentProgress += Math.max(0.4, diff * 0.12);
+        currentProgress += Math.max(0.6, diff * 0.15);
         if (currentProgress > targetProgress) {
           currentProgress = targetProgress;
         }
@@ -109,9 +90,7 @@
 
       if (counterEl) counterEl.textContent = displayVal;
       if (fillEl) fillEl.style.width = currentProgress + '%';
-      updateStatusText(displayVal);
 
-      // Finish condition
       if (currentProgress >= 100 && (windowLoaded || targetProgress >= 100)) {
         finishPreloader();
         return;
@@ -126,41 +105,35 @@
 
       if (counterEl) counterEl.textContent = '100';
       if (fillEl) fillEl.style.width = '100%';
-      if (statusEl) statusEl.textContent = 'Pronto! Forno aquecido.';
 
-      // Brief delay at 100% for perceived completeness
       setTimeout(() => {
         preloader.classList.add('preloader-hidden');
 
-        // Unlock page scrolling
         document.documentElement.classList.remove('preloader-locked');
         if (document.body) {
           document.body.classList.remove('preloader-locked');
         }
 
-        // Notify plugins and recalculate layout measurements
         window.dispatchEvent(new Event('resize'));
         if (window.ScrollTrigger) {
           window.ScrollTrigger.refresh();
         }
 
-        // Completely hide after CSS transition ends
         setTimeout(() => {
           preloader.style.display = 'none';
-        }, 700);
-      }, 250);
+        }, 400);
+      }, 150);
     }
 
-    // Start animation loop
     animationFrameId = requestAnimationFrame(animate);
 
-    // Hard fallback: never lock the user more than 3.2s under any network condition
+    // Limite de segurança: no máximo 2.8s
     setTimeout(() => {
       if (!isFinished) {
         windowLoaded = true;
         targetProgress = 100;
       }
-    }, 3200);
+    }, 2800);
   }
 
   if (document.readyState === 'loading') {

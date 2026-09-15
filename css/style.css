@@ -574,6 +574,7 @@ button {
   width: 100%;
   background-color: transparent;
   position: relative;
+  overflow: hidden;
 }
 
 /* Teal Banner */
@@ -584,17 +585,19 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 var(--gutter);
+  padding: 0 24px;
+  overflow: hidden;
 }
 
 .welcome-banner-title {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 9.2vw, 10.5rem);
+  font-size: clamp(2.2rem, 5.1vw, 5.6rem);
   color: var(--teal-light);
   line-height: 1;
   text-align: center;
   letter-spacing: 2px;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 /* Chef Image Wrapper */
@@ -891,9 +894,9 @@ button {
 
 .huge-editorial-title {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 8.8vw, 10.8rem);
+  font-size: clamp(3.2rem, 7.5vw, 8rem);
   color: var(--teal-light);
-  line-height: 0.92;
+  line-height: 0.95;
   letter-spacing: 2px;
   white-space: nowrap;
   pointer-events: none;
@@ -901,7 +904,7 @@ button {
   text-align: center;
 }
 
-/* --- Posicionamento Editorial Assimétrico das Palavras (Menos Simétricas) --- */
+/* --- Posicionamento Editorial das Palavras (Coeso, sem vazios gigantes) --- */
 .text-item {
   top: 0;
   position: absolute;
@@ -918,34 +921,34 @@ button {
   white-space: nowrap;
 }
 
-/* Offsets assimétricos arrojados que quebram a simetria monótona do centro */
+/* Alinhamento ao centro da seção para harmonia e leitura contínua */
 .text-ha-sabores {
-  left: 42%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
 .text-que {
-  left: 64%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
 .text-alimentam {
-  left: 40%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
 .text-outros {
-  left: 37%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
 .text-criam {
-  left: 62%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
 .text-memorias {
-  left: 48%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
@@ -1040,12 +1043,15 @@ button {
   .huge-editorial-title {
     font-size: clamp(2.8rem, 10vw, 4.4rem);
   }
-  .text-ha-sabores { left: 45%; }
-  .text-que { left: 58%; }
-  .text-alimentam { left: 42%; }
-  .text-outros { left: 40%; }
-  .text-criam { left: 58%; }
-  .text-memorias { left: 48%; }
+  .text-ha-sabores,
+  .text-que,
+  .text-alimentam,
+  .text-outros,
+  .text-criam,
+  .text-memorias {
+    left: 50%;
+    transform: translateX(-50%);
+  }
   
   .img-flank-left {
     left: 2vw;
