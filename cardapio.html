@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio &amp; Delivery Online | Bingen Pizza &amp; Burger</title>
+  <meta name="description" content="Pizzas artesanais assadas em forno a lenha e smash burgers premium em Bingen, Petrópolis. Pedidos diretos pelo WhatsApp.">
+  
+  <!-- Google Fonts (Idêntico à Home) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Bree+Serif&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/cardapio.css">
+</head>
+<body>
+
+  <!-- Full-Width Background Texture (Repeats downwards, 15% opacity, lowest z-index) -->
+  <div class="bg-texture-layer" aria-hidden="true"></div>
+
+  <!-- Random Scattered Decorative Accent Lines (Transparent-Color-Transparent Gradient) -->
+  <div class="scattered-accent-lines" aria-hidden="true">
+    <div class="accent-line-v al-v1"></div>
+    <div class="accent-line-v al-v2"></div>
+    <div class="accent-line-v al-v3"></div>
+    <div class="accent-line-v al-v4"></div>
+    <div class="accent-line-v al-v5"></div>
+    <div class="accent-line-v al-v6"></div>
+    <div class="accent-line-v al-v7"></div>
+    <div class="accent-line-v al-v8"></div>
+    <div class="accent-line-h al-h1"></div>
+    <div class="accent-line-h al-h2"></div>
+    <div class="accent-line-h al-h3"></div>
+    <div class="accent-line-h al-h4"></div>
+    <div class="accent-line-h al-h5"></div>
+    <div class="accent-line-h al-h6"></div>
+  </div>
+
+  <!-- ==================== HEADER NAVBAR (Apenas Botão Voltar) ==================== -->
+  <header class="subpage-header">
+    <div class="subpage-header-inner">
+      <a href="index.html" class="btn-back-clean" title="Voltar à página inicial">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        <span>VOLTAR</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== 1. HERO 60% IMAGEM NO TOPO ==================== -->
+    <section class="hero-photo-top" id="hero-cardapio">
+      <img src="assets/images/wood-oven-fire.png" alt="Forno a lenha napolitano em brasa viva da Pizzaria Bingen" class="hero-photo-top-img">
+    </section>
+
+    <!-- ==================== 2. SOLID TEAL BANNER COM O TITULÃO ==================== -->
+    <section class="cardapio-teal-banner" id="banner-cardapio">
+      <div class="cardapio-banner-container">
+        <h1 class="cardapio-banner-title">CARDÁPIO &amp; PEDIDOS ONLINE</h1>
+        <p class="cardapio-banner-subtitle">PIZZAS NO FORNO A LENHA &amp; SMASH BURGERS NA SERRA</p>
+      </div>
+    </section>
+
+    <!-- ==================== 3. CART & SEARCH BAR (CARRINHO ACIMA DA PESQUISA) ==================== -->
+    <div class="search-bar-fullwidth">
+      <div class="search-cart-container">
+        <div class="cart-top-bar">
+          <button class="header-cart-btn" id="header-cart-btn" aria-label="Abrir Carrinho de Pedidos">
+            <span class="cart-label">CARRINHO</span>
+            <span class="cart-counter-box" id="cart-counter-badge">0</span>
+            <span class="cart-price-box" id="cart-btn-price">R$ 0,00</span>
+          </button>
+        </div>
+        <div class="search-bar-inner">
+          <input type="text" id="search-input" class="search-field-input" placeholder="DIGITE O NOME DO SABOR OU INGREDIENTE..." autocomplete="off">
+          <button id="search-clear-btn" class="search-clear-btn" title="Pesquisar no cardápio">PESQUISAR</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== 4. FULLSCREEN CATEGORY FILTERS (ZERO GAP) ==================== -->
+    <nav class="category-nav-tabs-fullscreen" id="category-pills" aria-label="Navegação das Categorias">
+      <!-- Injetado dinamicamente via cardapio.js com chevrons e sem emojis -->
+    </nav>
+
+    <!-- ==================== 5. PRODUCTS GRID ==================== -->
+    <section class="products-listing-section" id="secao-produtos">
+      <div class="section-container">
+
+        <!-- Featured Highlight Card: Meio a Meio (Directive 2) -->
+        <div class="meio-meio-featured-card" id="meio-meio-featured-card">
+          <div class="meio-meio-card-bg-layer" aria-hidden="true"></div>
+          <div class="meio-meio-card-overlay" aria-hidden="true"></div>
+          <div class="meio-meio-card-content">
+            <div class="meio-meio-card-tag">DESTAQUE EXCLUSIVO</div>
+            <h2 class="meio-meio-card-title">PIZZA MEIO A MEIO</h2>
+            <p class="meio-meio-card-desc">
+              Combine dois dos seus sabores favoritos em uma única pizza artesanal assada no forno a lenha. O sistema calcula automaticamente o valor pelo sabor de maior preço.
+            </p>
+            <div class="meio-meio-card-footer">
+              <button type="button" class="btn-solid-teal btn-meio-meio-action" id="btn-open-meio-meio-card">
+                <span>MONTAR PIZZA MEIO A MEIO</span>
+                <img src="assets/icons/chevron-right-nav2.svg" class="btn-chevron-icon" alt="" aria-hidden="true">
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="products-grid-container" id="products-grid">
+          <!-- Food cards idênticos à Home injetados via cardapio.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== 6. CART SIDEBAR DRAWER ==================== -->
+  <div class="cart-backdrop-dim" id="cart-backdrop"></div>
+  <aside class="cart-sidebar-drawer" id="cart-drawer" data-lenis-prevent aria-label="Carrinho de Compras">
+    
+    <div class="cart-sidebar-header">
+      <h2 class="cart-sidebar-title">SEU PEDIDO</h2>
+      <button class="cart-sidebar-close" id="btn-close-cart-drawer" aria-label="Fechar Carrinho">✕</button>
+    </div>
+
+    <!-- Free Delivery Notice (No emojis) -->
+    <div class="cart-free-delivery-banner" id="free-delivery-text">
+      FALTAM R$ 120,00 PARA ENTREGA GRÁTIS!
+    </div>
+
+    <!-- Items List -->
+    <div class="cart-items-scrollable" id="cart-items-list" data-lenis-prevent>
+      <!-- Injetado via JS -->
+    </div>
+
+    <!-- Cart Footer -->
+    <div class="cart-sidebar-footer">
+      <div class="cart-finance-row">
+        <span>SUBTOTAL:</span>
+        <span id="cart-subtotal-val">R$ 0,00</span>
+      </div>
+      <div class="cart-finance-row">
+        <span>TAXA DE ENTREGA:</span>
+        <span id="cart-delivery-fee-val">R$ 7,00</span>
+      </div>
+      <div class="cart-finance-row total-bold">
+        <span>TOTAL:</span>
+        <span class="total-highlight" id="cart-total-amount-val">R$ 0,00</span>
+      </div>
+
+      <button class="btn-solid-teal btn-cart-checkout" id="btn-proceed-checkout">
+        <span>AVANÇAR PARA ENTREGA</span>
+        <img src="assets/icons/chevron-right-nav2.svg" class="btn-chevron-icon" alt="" aria-hidden="true">
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== 7. MODAL CUSTOMIZAÇÃO PADRÃO ==================== -->
+  <div class="modal-dim-overlay" id="product-modal-overlay" data-lenis-prevent role="dialog" aria-modal="true">
+    <div class="modal-sharp-window" data-lenis-prevent>
+      
+      <div class="modal-sharp-header">
+        <h3 class="modal-sharp-title">PERSONALIZAR PRODUTO</h3>
+        <button class="modal-sharp-close" id="btn-close-product-modal" aria-label="Fechar">✕</button>
+      </div>
+
+      <div class="modal-sharp-body" data-lenis-prevent>
+        
+        <!-- Info Top -->
+        <div style="border-bottom:1px solid var(--teal-border); padding-bottom:1rem;">
+          <h4 id="modal-product-name" style="font-family:var(--font-display); font-size:2rem; color:var(--color-white); text-transform:uppercase; margin-bottom:0.4rem;">Nome</h4>
+          <p id="modal-product-desc" style="font-family:var(--font-serif); font-size:1.1rem; color:var(--color-muted); line-height:1.4;">Descrição</p>
+        </div>
+
+        <!-- Tamanhos -->
+        <div id="modal-sizes-section">
+          <div class="modal-option-label">1. ESCOLHA O TAMANHO (OBRIGATÓRIO)</div>
+          <div class="options-sharp-list" id="modal-sizes-container"></div>
+        </div>
+
+        <!-- Bordas Recheadas (Pizzas) -->
+        <div id="modal-crust-section" style="display:none;">
+          <div class="modal-option-label">2. BORDA RECHEADA ARTESANAL</div>
+          <div class="options-sharp-list" id="modal-crust-container"></div>
+        </div>
+
+        <!-- Brinde Grátis 2L (Super e Max) -->
+        <div id="modal-freegift-section" style="display:none;">
+          <div class="modal-option-label">REFRIGERANTE 2L GRÁTIS (BRINDE DA CASA)</div>
+          <select class="sharp-select" id="modal-freegift-select"></select>
+        </div>
+
+        <!-- Opções de Burgers -->
+        <div id="modal-burger-options-section" style="display:none;">
+          <div class="modal-option-label">PONTO DA CARNE</div>
+          <div class="options-sharp-list" id="modal-burger-doneness-container"></div>
+
+          <div class="modal-option-label" style="margin-top:1rem;">ADICIONAIS EXTRAS</div>
+          <div class="options-sharp-list" id="modal-burger-extras-container"></div>
+        </div>
+
+        <!-- Observações -->
+        <div>
+          <div class="modal-option-label">OBSERVAÇÕES PARA A COZINHA</div>
+          <textarea class="sharp-textarea" id="modal-item-notes" placeholder="Ex: Sem cebola, massa bem crocante..."></textarea>
+        </div>
+
+      </div>
+
+      <div class="modal-sharp-footer">
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-family:var(--font-condensed); font-size:0.85rem; color:var(--color-subtle); text-transform:uppercase;">VALOR TOTAL</span>
+          <span id="modal-total-price" style="font-family:var(--font-display); font-size:2rem; color:var(--teal-light);">R$ 0,00</span>
+        </div>
+
+        <div class="qty-control-sharp">
+          <button class="qty-sharp-btn" id="btn-modal-qty-minus">−</button>
+          <span class="qty-sharp-value" id="modal-qty-display">1</span>
+          <button class="qty-sharp-btn" id="btn-modal-qty-plus">+</button>
+        </div>
+
+        <button class="btn-solid-teal" id="btn-modal-add-to-cart">
+          ADICIONAR AO PEDIDO
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 8. MODAL MEIO A MEIO ==================== -->
+  <div class="modal-dim-overlay" id="meio-meio-modal-overlay" data-lenis-prevent role="dialog" aria-modal="true">
+    <div class="modal-sharp-window" data-lenis-prevent style="max-width: 720px;">
+      
+      <div class="modal-sharp-header">
+        <h3 class="modal-sharp-title">MONTAR PIZZA MEIO A MEIO</h3>
+        <button class="modal-sharp-close" id="btn-close-meio-meio-modal" aria-label="Fechar">✕</button>
+      </div>
+
+      <div class="modal-sharp-body" data-lenis-prevent>
+        
+        <div style="border:1px solid var(--teal-border); background-color:var(--bg-card); padding:0.85rem 1.25rem; font-family:var(--font-condensed); font-size:1.05rem; color:var(--teal-light); text-transform:uppercase;">
+          REGRA DA CASA: O VALOR É CALCULADO AUTOMATICAMENTE PELO <strong>SABOR DE MAIOR VALOR</strong>.
+        </div>
+
+        <!-- 2 Slots -->
+        <div class="meio-meio-modal-slots">
+          <div class="slot-sharp-box">
+            <span class="slot-sharp-label">1ª METADE (50%)</span>
+            <div class="slot-sharp-title" id="slot1-flavor-name">SELECIONE O 1º SABOR</div>
+            <div class="slot-sharp-price" id="slot1-flavor-price">--</div>
+            <input type="text" class="sharp-input" id="slot1-search" placeholder="BUSCAR SABOR..." style="padding:0.5rem; margin-bottom:0.4rem;">
+            <div class="flavor-picker-scroll" id="slot1-list" data-lenis-prevent></div>
+          </div>
+
+          <div class="slot-sharp-box">
+            <span class="slot-sharp-label">2ª METADE (50%)</span>
+            <div class="slot-sharp-title" id="slot2-flavor-name">SELECIONE O 2º SABOR</div>
+            <div class="slot-sharp-price" id="slot2-flavor-price">--</div>
+            <input type="text" class="sharp-input" id="slot2-search" placeholder="BUSCAR SABOR..." style="padding:0.5rem; margin-bottom:0.4rem;">
+            <div class="flavor-picker-scroll" id="slot2-list" data-lenis-prevent></div>
+          </div>
+        </div>
+
+        <!-- Tamanhos -->
+        <div>
+          <div class="modal-option-label">TAMANHO DA PIZZA</div>
+          <div class="options-sharp-list" id="meio-meio-sizes-container"></div>
+        </div>
+
+        <!-- Borda -->
+        <div>
+          <div class="modal-option-label">BORDA RECHEADA</div>
+          <div class="options-sharp-list" id="meio-meio-crust-container"></div>
+        </div>
+
+        <!-- Brinde Refrigerante 2L -->
+        <div id="meio-meio-freegift-section" style="display:none;">
+          <div class="modal-option-label">REFRIGERANTE 2L GRÁTIS</div>
+          <select class="sharp-select" id="meio-meio-freegift-select"></select>
+        </div>
+
+        <!-- Observações -->
+        <div>
+          <div class="modal-option-label">OBSERVAÇÕES</div>
+          <textarea class="sharp-textarea" id="meio-meio-notes" placeholder="Ex: Sem cebola na metade de calabresa..."></textarea>
+        </div>
+
+      </div>
+
+      <div class="modal-sharp-footer">
+        <div style="display:flex; flex-direction:column;">
+          <span style="font-family:var(--font-condensed); font-size:0.85rem; color:var(--color-subtle); text-transform:uppercase;">TOTAL MEIO A MEIO</span>
+          <span id="meio-meio-total-price" style="font-family:var(--font-display); font-size:2rem; color:var(--teal-light);">R$ 0,00</span>
+        </div>
+
+        <button class="btn-solid-teal" id="btn-meio-meio-add-to-cart">
+          ADICIONAR MEIO A MEIO
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 9. MODAL DE CHECKOUT & VIACEP ==================== -->
+  <div class="modal-dim-overlay" id="checkout-modal-overlay" data-lenis-prevent role="dialog" aria-modal="true">
+    <div class="modal-sharp-window" data-lenis-prevent style="max-width: 720px;">
+      
+      <div class="modal-sharp-header">
+        <h3 class="modal-sharp-title">FINALIZAR PEDIDO</h3>
+        <button class="modal-sharp-close" id="btn-close-checkout-modal" aria-label="Fechar">✕</button>
+      </div>
+
+      <div class="modal-sharp-body" data-lenis-prevent>
+        
+        <!-- Delivery vs Retirada Tabs (Sem emojis) -->
+        <div class="checkout-tabs-row">
+          <button class="checkout-tab-btn active" id="type-delivery-btn">
+            ENTREGA DELIVERY
+          </button>
+          <button class="checkout-tab-btn" id="type-retirada-btn">
+            RETIRADA NO BALCÃO
+          </button>
+        </div>
+
+        <!-- Dados Pessoais -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div>
+            <div class="modal-option-label">NOME COMPLETO *</div>
+            <input type="text" id="client-name" class="sharp-input" placeholder="SEU NOME" required>
+          </div>
+          <div>
+            <div class="modal-option-label">WHATSAPP (COM DDD) *</div>
+            <input type="tel" id="client-whatsapp" class="sharp-input" placeholder="(24) 99999-9999" required>
+          </div>
+        </div>
+
+        <!-- Endereço com ViaCEP -->
+        <div id="delivery-address-fields">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1rem;">
+            <div>
+              <div class="modal-option-label">CEP (AUTO-COMPLETA) *</div>
+              <input type="text" id="client-cep" class="sharp-input" placeholder="25660-004" maxlength="9">
+            </div>
+            <div>
+              <div class="modal-option-label">BAIRRO *</div>
+              <input type="text" id="client-bairro" class="sharp-input" placeholder="BAIRRO">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 2fr 1fr; gap:1rem; margin-bottom:1rem;">
+            <div>
+              <div class="modal-option-label">RUA / LOGRADOURO *</div>
+              <input type="text" id="client-rua" class="sharp-input" placeholder="NOME DA RUA">
+            </div>
+            <div>
+              <div class="modal-option-label">NÚMERO *</div>
+              <input type="text" id="client-numero" class="sharp-input" placeholder="Nº">
+            </div>
+          </div>
+
+          <div>
+            <div class="modal-option-label">COMPLEMENTO / REFERÊNCIA</div>
+            <input type="text" id="client-complemento" class="sharp-input" placeholder="APTO, BLOCO, EM FRENTE AO...">
+          </div>
+        </div>
+
+        <!-- Forma de Pagamento -->
+        <div>
+          <div class="modal-option-label">FORMA DE PAGAMENTO *</div>
+          <div class="payment-grid-sharp">
+            <div class="payment-sharp-card selected" data-method="pix">PIX</div>
+            <div class="payment-sharp-card" data-method="cartao_credito">CRÉDITO</div>
+            <div class="payment-sharp-card" data-method="cartao_debito">DÉBITO</div>
+            <div class="payment-sharp-card" data-method="dinheiro">DINHEIRO</div>
+          </div>
+        </div>
+
+        <!-- Troco -->
+        <div id="troco-container" style="display:none;">
+          <div class="modal-option-label">TROCO PARA QUANTO?</div>
+          <input type="text" id="client-troco" class="sharp-input" placeholder="EX: R$ 100,00">
+        </div>
+
+        <!-- Observações do Pedido -->
+        <div>
+          <div class="modal-option-label">OBSERVAÇÕES DA ENTREGA</div>
+          <input type="text" id="client-notes" class="sharp-input" placeholder="EX: TOCAR O INTERFONE 201...">
+        </div>
+
+        <!-- Resumo -->
+        <div class="checkout-sharp-summary">
+          <div class="summary-sharp-title">RESUMO DOS ITENS</div>
+          <div id="checkout-summary-items-list" style="display:flex; flex-direction:column; gap:0.35rem; margin-bottom:0.75rem;"></div>
+          
+          <div style="display:flex; justify-content:space-between; font-family:var(--font-condensed); font-size:1.1rem; color:var(--color-muted);">
+            <span>SUBTOTAL:</span>
+            <span id="checkout-final-subtotal">R$ 0,00</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-family:var(--font-condensed); font-size:1.1rem; color:var(--color-muted);">
+            <span>TAXA DE ENTREGA:</span>
+            <span id="checkout-final-delivery">R$ 7,00</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-family:var(--font-display); font-size:1.8rem; color:var(--color-white); border-top:1px solid var(--teal-border); padding-top:0.75rem; margin-top:0.75rem;">
+            <span>VALOR TOTAL:</span>
+            <span style="color:var(--teal-light);" id="checkout-final-total">R$ 0,00</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-sharp-footer" style="flex-direction:column; gap:0.5rem;">
+        <button class="btn-solid-teal" id="btn-dispatch-whatsapp" style="width:100%; padding:1.25rem; font-size:1.5rem;">
+          ENVIAR PEDIDO NO WHATSAPP
+        </button>
+        <span style="font-family:var(--font-condensed); font-size:0.85rem; color:var(--color-subtle); text-transform:uppercase;">
+          Você será redirecionado para o WhatsApp com o pedido formatado.
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== 10. FOOTER (AZUL TEAL COM LOGO BINGEN MIX-BLEND & MINIMALISTA) ==================== -->
+  <footer id="footer" class="site-footer">
+    <!-- Giant Watermark Script "Bingen" in background with mix-blend -->
+    <div class="footer-script-watermark" aria-hidden="true">
+      <img src="assets/images/bingen-script-logo.png" alt="">
+    </div>
+
+    <div class="footer-tripletta-container">
+      
+      <!-- 1. Linha Superior de Links Minimalistas com Chevron -->
+      <nav class="footer-nav-links-row" aria-label="Navegação do Rodapé">
+        <a href="index.html" class="footer-nav-item">
+          <span>Início</span>
+          <span class="nav-chevron">›</span>
+        </a>
+        <a href="cardapio.html" class="footer-nav-item">
+          <span>Cardápio &amp; Pedidos</span>
+          <span class="nav-chevron">›</span>
+        </a>
+        <a href="restaurante.html" class="footer-nav-item">
+          <span>O Restaurante</span>
+          <span class="nav-chevron">›</span>
+        </a>
+        <a href="https://wa.me/5524999999999" target="_blank" rel="noopener noreferrer" class="footer-nav-item">
+          <span>Delivery WhatsApp</span>
+          <span class="nav-chevron">›</span>
+        </a>
+        <a href="index.html#faq" class="footer-nav-item">
+          <span>Dúvidas Frequentes</span>
+          <span class="nav-chevron">›</span>
+        </a>
+      </nav>
+
+      <!-- 2. Titular Neo-Brutalista Monumental Edge-to-Edge -->
+      <div class="footer-monumental-brand">
+        <h3 class="footer-huge-title">BINGEN</h3>
+        <span class="footer-huge-sub">PIZZA &amp; BURGER</span>
+      </div>
+
+      <!-- 3. Linha Inferior de Atendimento e Créditos -->
+      <div class="footer-bottom-meta-row">
+        <div class="footer-meta-left">
+          <span>Rua Bingen, Petrópolis - RJ &bull; Região Serrana</span>
+          <span>&bull;</span>
+          <span>Terça a Domingo: 18h às 23h30</span>
+          <span>&bull;</span>
+          <span>&copy; 2026 Bingen</span>
+        </div>
+        <div class="footer-meta-right">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">@bingenpizzaburger</a>
+          <span>&bull;</span>
+          <span>Desenvolvido por <strong style="color:#ffffff;">Canedo Web Studio</strong></span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- GSAP & ScrollToPlugin & Flip & Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  
+  <!-- App Data & Scripts -->
+  <script src="js/cardapioData.js"></script>
+  <script src="js/cardapio.js"></script>
+  <script src="js/cursor.js"></script>
+</body>
+</html>

@@ -1,0 +1,1486 @@
+/* ==========================================================================
+   BINGEN PIZZA & BURGER - RESTAURANTE STYLE SYSTEM
+   Full-width, grosso, pesado e minimalista neo-brutalista (Estilo Home).
+   Zero sombras, zero bordas finas fracas, zero boxes miúdas.
+   ========================================================================== */
+
+/* --- CSS Variables & Design Tokens --- */
+:root {
+  --bg-dark: #141111;
+  --bg-card: #141111;
+  --bg-panel: #141111;
+  
+  /* Teal Palette */
+  --teal-primary: #0C9C8E;
+  --teal-hover: #097268;
+  --teal-border: #0b5e55;
+  --teal-light: #8fddd5;
+  
+  /* Typography Colors */
+  --color-white: #efefef;
+  --color-white-pure: #ffffff;
+  --color-offwhite: #e3e3e3;
+  --color-muted: rgba(255, 255, 255, 0.7);
+  --color-subtle: #a5a2a0;
+  
+  /* Font Families */
+  --font-display: 'Anton', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Bree Serif', Georgia, serif;
+  --font-condensed: 'Barlow Condensed', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-ui: 'Poppins', sans-serif;
+
+  --max-content-width: 1440px;
+  --gutter: 32px;
+}
+
+/* --- Base & Reset: Zero Sombras e Zero Bordas Finas --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: none !important; /* Zero sombras em todo o site */
+  text-shadow: none !important; /* Zero text-shadows em todo o site */
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-dark);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: auto !important;
+}
+
+/* Regras oficiais Lenis para evitar travamentos e sobreposição de rolagem */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: transparent !important;
+  color: var(--color-white);
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   BACKGROUND TEXTURE (Idêntico à Home - Pedra e Fumaça Rústica)
+   ========================================================================== */
+.bg-texture-layer {
+  position: fixed;
+  inset: 0;
+  background-image: url('../assets/images/hero-bg-image19.png');
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100% auto;
+  opacity: 0.26;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HEADER NAVBAR
+   ========================================================================== */
+.restaurante-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(20, 17, 17, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--teal-border);
+}
+
+.restaurante-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 5vw;
+  width: 100%;
+}
+
+.header-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-brand-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 2px;
+  line-height: 1;
+  color: var(--color-white-pure);
+}
+
+.header-brand-sub {
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--teal-primary);
+  font-weight: 700;
+}
+
+.btn-solid-teal {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background-color: var(--teal-primary);
+  color: #061815;
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none !important;
+  cursor: default;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-solid-teal:hover {
+  background-color: var(--teal-hover);
+  color: #ffffff;
+}
+
+.btn-solid-teal img {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0);
+}
+
+.btn-solid-teal:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.btn-header-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 26px;
+  background-color: var(--teal-primary);
+  color: #061815;
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none !important;
+  cursor: default;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-header-action:hover {
+  background-color: var(--teal-hover);
+  color: #ffffff;
+}
+
+.btn-header-action img {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0);
+}
+
+.btn-header-action:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/* ==========================================================================
+   SUBPAGE HEADER MINIMALISTA (Apenas botão voltar, sem background, sem border)
+   ========================================================================== */
+.subpage-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background: transparent !important;
+  border: none !important;
+  padding: 2.2rem 5vw;
+}
+
+.subpage-header-inner {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-back-clean {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: var(--color-white-pure) !important;
+  font-family: var(--font-condensed);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: default;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-back-clean:hover {
+  color: var(--teal-primary) !important;
+  transform: translateX(-4px);
+}
+
+.btn-back-clean svg {
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.btn-back-clean:hover svg {
+  transform: translateX(-2px);
+}
+
+/* ==========================================================================
+   1. HERO 95% IMAGEM NO TOPO (PURA FOTOGRAFIA, SEM TEXTO EM CIMA)
+   ========================================================================== */
+.hero-photo-top {
+  width: 100%;
+  height: 95vh;
+  min-height: 95vh;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-hero);
+  border-bottom: 2px solid var(--teal-border);
+}
+
+.hero-photo-top-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+  display: block;
+}
+
+/* ==========================================================================
+   BANNERS MONUMENTAIS AZUIS TEAL (Sólido, Monumental & Sem Textos Pequenos)
+   ========================================================================== */
+.restaurante-teal-banner {
+  width: 100%;
+  background-color: var(--teal-primary);
+  border-top: 2px solid var(--teal-border);
+  border-bottom: 2px solid var(--teal-border);
+  padding: 3.5rem var(--gutter);
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+
+.restaurante-banner-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.restaurante-banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6.5vw, 6.2rem);
+  color: var(--color-white-pure);
+  line-height: 0.95;
+  letter-spacing: clamp(1.5px, 0.4vw, 3.5px);
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+}
+
+.restaurante-banner-subtitle {
+  font-family: var(--font-condensed);
+  font-size: clamp(14px, 1.3vw, 18px);
+  font-weight: 700;
+  letter-spacing: clamp(3px, 0.8vw, 6px);
+  color: var(--teal-light);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ==========================================================================
+   BADGES SÓLIDOS (Sem transparência, sem pontinhos flutuantes finos)
+   ========================================================================== */
+.solid-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.solid-badge {
+  background-color: var(--teal-primary);
+  color: var(--color-white-pure);
+  font-family: var(--font-condensed);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: none !important;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   SEÇÃO DOS 4 ELEMENTOS RÚSTICOS DA SERRA (Rusticidade Autêntica)
+   - Título monumental centralizado, sem caixas e sem números espalhados
+   ========================================================================== */
+.rustic-elements-section {
+  width: 100%;
+  padding: 120px 5vw;
+  background-color: transparent;
+  border-bottom: none !important;
+  position: relative;
+  z-index: 2;
+}
+
+.rustic-section-header {
+  max-width: 1050px;
+  margin: 0 auto 65px;
+  text-align: center;
+}
+
+.rustic-section-tag {
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 14px;
+  display: inline-block;
+  text-align: center;
+}
+
+.rustic-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 7.5vw, 8rem);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.rustic-section-desc {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1.4vw, 1.45rem);
+  line-height: 1.65;
+  color: var(--color-muted);
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.rustic-elements-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+.rustic-card {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  transition: transform 0.25s ease;
+}
+
+.rustic-card:hover {
+  transform: translateY(-4px);
+}
+
+.rustic-card-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.rustic-card-text {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-offwhite);
+  text-align: center;
+}
+
+/* ==========================================================================
+   3, 4. SPLIT FEATURE SECTIONS (50vw / 50vw - Estilo Delivery da Home)
+   - Sem linhas de separação, sem blocos métricos
+   ========================================================================== */
+.split-feature-section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 720px;
+  border-bottom: none !important;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.split-photo-side {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  min-height: 540px;
+}
+
+.split-photo-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  filter: contrast(1.05) brightness(0.96);
+}
+
+.split-feature-section:hover .split-photo-side img {
+  transform: scale(1.04);
+  filter: contrast(1.08) brightness(1.02);
+}
+
+.split-text-side {
+  padding: clamp(52px, 7vw, 105px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.feature-super-tag {
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 16px;
+}
+
+.feature-headline {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 5.5vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  margin-bottom: 24px;
+}
+
+.feature-paragraph {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1.4vw, 1.45rem);
+  line-height: 1.7;
+  color: var(--color-offwhite);
+}
+
+/* ==========================================================================
+   SEÇÃO DEDICADA: A CASA & OS AMBIENTES (4 Cards Sólidos com Fotos da Casa)
+   ========================================================================== */
+.venue-dedicated-section {
+  width: 100%;
+  padding: 100px var(--gutter);
+  background-color: var(--bg-dark);
+  position: relative;
+  z-index: 2;
+  border-bottom: 2px solid var(--teal-border);
+}
+
+.venue-header-block {
+  max-width: 900px;
+  margin: 0 auto 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.venue-tag {
+  font-family: var(--font-condensed);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+}
+
+.venue-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 7.5vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  margin: 0;
+}
+
+.venue-desc {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 1.3vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 780px;
+}
+
+.venue-cards-grid {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.venue-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--teal-accent);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+
+.venue-card:hover {
+  border-color: var(--teal-light);
+}
+
+.venue-card-media {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  position: relative;
+  background-color: #0c0908;
+}
+
+.venue-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.venue-card:hover .venue-card-media img {
+  transform: scale(1.05);
+}
+
+.venue-card-body {
+  padding: 1.75rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1.5px solid var(--teal-accent);
+  background-color: var(--bg-card);
+  flex: 1;
+}
+
+.venue-card-tag {
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+}
+
+.venue-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  margin: 0;
+}
+
+.venue-card-text {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   6. MURAL FOTOGRÁFICO FULL-WIDTH (Zero Boxes Miúdas, Zero Legendas Finas)
+   - Título monumental centralizado
+   ========================================================================== */
+.photo-mural-section {
+  width: 100%;
+  padding: 120px 0 0;
+  background-color: transparent;
+  border-bottom: none !important;
+  position: relative;
+  z-index: 2;
+}
+
+.mural-header-strip {
+  padding: 0 5vw 55px;
+  max-width: 1050px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mural-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 7.5vw, 8rem);
+  letter-spacing: 2px;
+  color: var(--color-white-pure);
+  line-height: 0.95;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.mural-desc {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1.4vw, 1.45rem);
+  color: var(--color-muted);
+  margin-top: 14px;
+  text-align: center;
+}
+
+.mural-grid {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+}
+
+.mural-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 8px;
+}
+
+.mural-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 8px;
+}
+
+.mural-photo-item {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  height: clamp(360px, 34vw, 520px);
+  cursor: default;
+}
+
+.mural-grid-2 .mural-photo-item {
+  height: clamp(400px, 38vw, 580px);
+}
+
+.mural-photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  filter: contrast(1.05) brightness(0.96);
+}
+
+.mural-photo-item:hover img {
+  transform: scale(1.05);
+  filter: contrast(1.08) brightness(1.03);
+}
+
+/* ==========================================================================
+   7. VISITAÇÃO & RESERVAS (SPLIT FULL-WIDTH MACIÇO)
+   ========================================================================== */
+.visit-split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: 660px;
+  border-bottom: none !important;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.visit-content-side {
+  padding: clamp(52px, 7vw, 105px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.visit-headline {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 5.5vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  margin-bottom: 36px;
+}
+
+.visit-meta-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.visit-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-family: var(--font-condensed);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--teal-primary);
+  text-transform: uppercase;
+}
+
+.meta-val {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1.4vw, 1.45rem);
+  color: var(--color-white-pure);
+  line-height: 1.4;
+}
+
+.visit-ctas-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-large {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+.btn-solid-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  background-color: #1a1615;
+  color: var(--color-white-pure);
+  font-family: var(--font-condensed);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none !important;
+  cursor: default;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-solid-dark:hover {
+  background-color: var(--teal-hover);
+  color: #ffffff;
+}
+
+.visit-photo-side {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  min-height: 540px;
+}
+
+.visit-photo-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visit-split-section:hover .visit-photo-side img {
+  transform: scale(1.04);
+}
+
+/* ==========================================================================
+   8. DÚVIDAS DO RESTAURANTE (FAQ ACCORDION)
+   ========================================================================== */
+.faq-section {
+  width: 100%;
+  background-color: transparent;
+  padding: 130px 0 150px;
+  position: relative;
+  z-index: 2;
+  border: none !important;
+}
+
+.faq-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 5rem;
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.faq-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-section-header {
+  margin-bottom: 3.5rem;
+}
+
+.faq-title-highlight {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 7.5vw, 8.5rem);
+  color: var(--teal-primary);
+  line-height: 0.92;
+  letter-spacing: 2px;
+}
+
+.faq-title-white {
+  font-family: var(--font-display);
+  font-size: clamp(3.8rem, 7.5vw, 8.5rem);
+  color: var(--color-white-pure);
+  line-height: 0.92;
+  letter-spacing: 2px;
+}
+
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-accordion-item {
+  width: 100%;
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 0;
+  text-align: left;
+  background: none;
+  border: none !important;
+  color: var(--color-white-pure);
+  cursor: default !important;
+}
+
+.question-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 1.8vw, 2.1rem);
+  color: var(--color-white-pure);
+  line-height: 1.3;
+}
+
+.faq-toggle-icon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 1.5rem;
+}
+
+.icon-line {
+  position: absolute;
+  background-color: var(--teal-primary);
+}
+
+.icon-line.h-line {
+  width: 28px;
+  height: 3px;
+}
+
+.icon-line.v-line {
+  width: 3px;
+  height: 28px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.faq-accordion-item.open .icon-line.v-line {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding-bottom 0.35s ease;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.faq-accordion-item.open .faq-answer-panel {
+  grid-template-rows: 1fr;
+  padding-bottom: 1.5rem;
+}
+
+.faq-answer-content {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.faq-answer-panel p {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.faq-item-separator {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(12, 156, 142, 0.8) 0%, rgba(12, 156, 142, 0.25) 75%, transparent 100%);
+}
+
+.faq-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.faq-oven-photo-frame {
+  width: 100%;
+  max-width: 695px;
+  height: 520px;
+  overflow: hidden;
+  border: none !important; /* Zero bordas finas */
+}
+
+.faq-oven-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.faq-whatsapp-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent !important;
+  border: none !important;
+}
+
+.whatsapp-title-teal {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 4.8vw, 5.5rem);
+  color: var(--teal-primary);
+  line-height: 0.95;
+  letter-spacing: 1px;
+}
+
+.whatsapp-title-white {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 4.8vw, 5.5rem);
+  color: var(--color-white-pure);
+  line-height: 0.95;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.whatsapp-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+
+.btn-whatsapp {
+  width: 461px;
+  max-width: 100%;
+  height: 76px;
+}
+
+/* ==========================================================================
+   MINIMALIST NEO-BRUTALIST FOOTER (TRIPLETTA STYLE)
+   - Linha minimalista superior de links com chevron
+   - Titular neo-brutalista monumental edge-to-edge
+   - Linha minimalista de créditos e atendimento
+   ========================================================================== */
+.site-footer {
+  width: 100%;
+  background-color: var(--teal-primary); /* Fundo azul/teal vibrante como antes */
+  border-top: 3px solid var(--teal-border);
+  padding: 85px 5vw 45px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Textura de pedra da Home integrada também embaixo no Rodapé */
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/hero-bg-image19.png');
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: 100% auto;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Giant Watermark Script "Bingen" in background with mix-blend */
+.footer-script-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1520px;
+  opacity: 0.65;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footer-script-watermark img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-tripletta-container {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+}
+
+/* 1. Linha Superior de Links Minimalistas com Chevron */
+.footer-nav-links-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.footer-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-condensed);
+  font-size: clamp(15px, 1.3vw, 19px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-nav-item:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.footer-nav-item .nav-chevron {
+  color: var(--teal-light);
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* 2. Titular Neo-Brutalista Monumental Edge-to-Edge */
+.footer-monumental-brand {
+  padding: 55px 0 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.footer-huge-title {
+  font-family: var(--font-display);
+  font-size: clamp(6.5rem, 17vw, 20rem);
+  line-height: 0.82;
+  letter-spacing: clamp(4px, 1.4vw, 14px);
+  text-transform: uppercase;
+  color: var(--color-white-pure); /* Branco puro sobre o fundo azul teal */
+  margin: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-shadow: none !important;
+}
+
+.footer-huge-sub {
+  font-family: var(--font-condensed);
+  font-size: clamp(26px, 4.2vw, 60px);
+  font-weight: 700;
+  letter-spacing: clamp(8px, 2.2vw, 24px);
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-top: 10px;
+}
+
+/* 3. Linha Inferior de Créditos e Contato */
+.footer-bottom-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-meta-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-meta-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-meta-right a {
+  color: var(--color-white-pure);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.footer-meta-right a:hover {
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   FLOATING DELIVERY BUTTON (Circular, 3px border #8FDDD5, icon #8FDDD5)
+   ========================================================================== */
+.floating-delivery-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 68px;
+  height: 68px;
+  border-radius: 50% !important;
+  background-color: var(--teal-primary) !important;
+  color: #8FDDD5 !important;
+  border: 3px solid #8FDDD5 !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: default;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.floating-delivery-btn:hover {
+  background-color: var(--teal-hover) !important;
+  border-color: #ffffff !important;
+  transform: scale(1.08);
+  box-shadow: none !important;
+}
+
+.floating-delivery-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-delivery-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #8FDDD5;
+}
+
+/* ==========================================================================
+   CUSTOM CURSOR (Bolinha Única com Balão de Ação no Hover - Zero Mãozinha)
+   ========================================================================== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% !important;
+  background-color: var(--teal-primary);
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease;
+}
+
+.custom-cursor .cursor-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  line-height: 1.05;
+  pointer-events: none;
+}
+
+.custom-cursor .cursor-action-text {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.custom-cursor .cursor-action-chevron {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 0.8;
+  margin-top: 2px;
+}
+
+/* Quando expande no hover de botões, links, cards */
+.custom-cursor.cursor-expanded {
+  width: 86px;
+  height: 86px;
+  background-color: var(--teal-primary);
+  box-shadow: none !important;
+}
+
+.custom-cursor.cursor-expanded .cursor-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.custom-cursor.cursor-pressed {
+  transform: translate3d(-50%, -50%, 0) scale(0.9);
+}
+
+/* Directive: Preservar o cursor de seta normal em todo o site, mas NUNCA exibir a mãozinha (pointer) em hover */
+* {
+  cursor: default;
+}
+input:not([type="button"]):not([type="submit"]):not([type="reset"]), textarea {
+  cursor: text !important;
+}
+a, button, input[type="button"], input[type="submit"], [role="button"], label,
+.btn-solid-teal, .btn-back-clean, .combo-card, .food-card, .tripletta-card,
+.nav-tab-item, .faq-question-btn, .carousel-nav-btn, .indicator-dot,
+.strip-action-header, .strip-gray-panel, .floating-delivery-btn,
+.category-tab-btn, .header-cart-btn, .search-clear-btn, .meio-meio-featured-card,
+.footer-nav-item, .footer-meta-right a {
+  cursor: default !important;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .split-feature-section,
+  .visit-split-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .split-left-photo .split-photo-side {
+    order: 1;
+  }
+  .split-left-photo .split-text-side {
+    order: 2;
+  }
+  
+  .split-right-photo .split-text-side {
+    order: 2;
+  }
+  .split-right-photo .split-photo-side {
+    order: 1;
+  }
+
+  .visit-split-section .visit-content-side {
+    order: 2;
+  }
+  .visit-split-section .visit-photo-side {
+    order: 1;
+  }
+
+  .rustic-elements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mural-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .faq-oven-photo-frame {
+    max-width: 100%;
+    height: 420px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-photo-top {
+    height: 95vh;
+    min-height: 95vh;
+  }
+
+  .venue-dedicated-section {
+    padding: 60px 16px;
+  }
+
+  .venue-header-block {
+    margin-bottom: 35px;
+  }
+
+  .venue-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .venue-card-media {
+    height: 220px;
+  }
+
+  .venue-card-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  .restaurante-teal-banner {
+    padding: 2.5rem 16px;
+  }
+
+  .restaurante-banner-title {
+    font-size: clamp(2.2rem, 9vw, 3.4rem);
+  }
+
+  .rustic-elements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mural-grid-3,
+  .mural-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .mural-photo-item,
+  .mural-grid-2 .mural-photo-item {
+    height: 300px;
+  }
+
+  .faq-section {
+    padding: 80px 0 100px;
+  }
+
+  .faq-oven-photo-frame {
+    height: 280px;
+  }
+
+  .btn-whatsapp {
+    width: 100%;
+    height: 64px;
+    font-size: 14px;
+  }
+
+  .floating-delivery-btn {
+    bottom: 18px;
+    right: 18px;
+    width: 58px;
+    height: 58px;
+  }
+  .floating-delivery-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .footer-huge-title {
+    font-size: clamp(4.2rem, 16.5vw, 7.8rem);
+    letter-spacing: 3px;
+  }
+
+  .footer-huge-sub {
+    font-size: clamp(18px, 5.5vw, 28px);
+    letter-spacing: clamp(4px, 1.5vw, 10px);
+    margin-top: 8px;
+  }
+}

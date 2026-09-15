@@ -1,0 +1,2803 @@
+/* ==========================================================================
+   BINGEN PIZZA & BURGER - STYLE SYSTEM
+   Handcrafted dark luxury, cold interface, warm food.
+   100% fidelity to the Figma blueprint and reference screenshot.
+   ========================================================================== */
+
+/* --- CSS Variables & Design Tokens --- */
+:root {
+  /* Background Colors */
+  --bg-hero: #141111;
+  --bg-dark: #141111;
+  --bg-card: #141111;
+  --bg-panel-gray: #d9d9d9;
+  
+  /* Teal Palette - Directive 5 (#0C9C8E), Directive 6 (#097268), Directive 12 (#0b5e55) */
+  --teal-primary: #0C9C8E;
+  --teal-hover: #097268;
+  --teal-accent: #0C9C8E;
+  --teal-border: #0b5e55;
+  --teal-cta: #0C9C8E;
+  --teal-light: #8fddd5;
+  --teal-glow: #0C9C8E;
+  --teal-gradient-start: rgba(12, 156, 142, 0);
+  --teal-gradient-mid: rgb(12, 156, 142);
+  --teal-gradient-end: rgba(12, 156, 142, 0);
+
+  /* Typography Colors */
+  --color-white: #efefef;
+  --color-white-pure: #ffffff;
+  --color-offwhite: #e3e3e3;
+  --color-muted: rgba(255, 255, 255, 0.7);
+  --color-subtle: #a5a2a0;
+  --color-text-body: #efefef;
+
+  /* Font Families */
+  --font-display: 'Anton', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Bree Serif', Georgia, serif;
+  --font-condensed: 'Barlow Condensed', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-ui: 'Poppins', sans-serif;
+
+  /* Layout */
+  --max-content-width: 1440px;
+  --canvas-max-width: 1920px;
+  --gutter: 32px;
+}
+
+/* --- Global Reset & Base Styles --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: none !important; /* Zero sombras em todo o site */
+  text-shadow: none !important; /* Zero text-shadows em todo o site */
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto;
+  background-color: var(--bg-dark);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+body {
+  font-family: var(--font-sans);
+  background-color: transparent;
+  color: var(--color-white);
+  line-height: 1.5;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Background Texture Layer (15% de opacidade, menor z-index de todos) */
+.bg-texture-layer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/hero-bg-image19.png');
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100% auto;
+  opacity: 0.15; /* 15% de opacidade */
+  pointer-events: none;
+  z-index: -999;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: default;
+}
+
+.section-container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: 2;
+}
+
+/* Common Text Utilities */
+.text-white { color: var(--color-white); }
+.text-teal { color: var(--teal-primary); }
+
+/* Buttons */
+.btn-solid-teal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--teal-primary);
+  border: none;
+  color: var(--color-white-pure);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 1.25rem 2.5rem;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-solid-teal:hover {
+  background-color: var(--teal-hover);
+}
+
+.btn-outline-teal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid var(--teal-accent);
+  color: var(--teal-accent);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-outline-teal:hover {
+  background-color: rgba(20, 175, 157, 0.1);
+  color: var(--color-white-pure);
+  border-color: var(--teal-light);
+}
+
+.btn-large {
+  padding: 1.75rem 3.5rem;
+  font-size: 1.85rem;
+}
+
+
+/* ==========================================================================
+   1. HERO SECTION
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 920px;
+  height: 920px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(34, 26, 24, 0.96) 0%, rgba(22, 18, 17, 0.98) 60%, #141111 100%);
+  background-color: var(--bg-hero);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Texture */
+.hero-bg-texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg-texture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Vertical Glow Accent Lines */
+.hero-vertical-line {
+  position: absolute;
+  width: 2px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-vertical-line.left-line {
+  height: 920px;
+  left: calc(50% - 277px);
+  top: 0;
+  background: linear-gradient(180deg, rgba(20, 175, 157, 0) 0%, rgb(20, 175, 157) 25%, rgb(20, 175, 157) 75%, rgba(20, 175, 157, 0) 100%);
+}
+
+.hero-vertical-line.right-line {
+  height: 920px;
+  left: calc(50% + 103px);
+  top: 0;
+  overflow: hidden;
+}
+
+.hero-vertical-line.right-line img {
+  height: 100%;
+  width: 2px;
+  object-fit: cover;
+}
+
+/* Top Right Badge */
+.hero-top-right-badge {
+  position: absolute;
+  top: 48px;
+  right: 6%;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.hero-top-right-badge img {
+  width: 58px;
+  height: auto;
+}
+
+.hero-badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.badge-title {
+  font-family: var(--font-condensed);
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #109889;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.badge-subtitle {
+  font-family: var(--font-condensed);
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--color-subtle);
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+/* Giant Script Watermark Logo */
+.hero-script-watermark {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1480px;
+  opacity: 0.86;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hero-script-watermark img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Glow Ellipse behind pizza - Removida a luz azul conforme ponto 5 */
+.hero-glow-ellipse {
+  display: none !important;
+}
+
+/* Hero Centerpiece Pizza */
+.hero-pizza-wrapper {
+  position: absolute;
+  top: calc(50% + 45px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 920px;
+  max-width: 90vw;
+  z-index: 6;
+}
+
+.hero-pizza-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9));
+}
+
+/* Headline: PIZZA & BURGER with Capsule */
+.hero-headline-capsule {
+  position: absolute;
+  top: 68%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--bg-hero);
+  padding: 0.2rem 2.8rem;
+  border-radius: 23px;
+  z-index: 7;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 8.5vw, 8.25rem);
+  line-height: 1;
+  color: transparent;
+  background: rgba(19, 161, 144, 0.89);
+  background-clip: text;
+  -webkit-background-clip: text;
+  white-space: nowrap;
+  letter-spacing: 2px;
+}
+
+/* Hero Bottom Bar: Glowing Line, Central Oven Emblem ("DESDE 2008") and Social Media Icons */
+.hero-bottom-bar {
+  position: absolute;
+  bottom: 22px;
+  width: 100%;
+  max-width: 1560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  padding: 0 4vw;
+}
+
+.hero-divider-line {
+  height: 3px;
+  flex: 1;
+  max-width: 560px;
+}
+
+.hero-divider-line.flank-left {
+  background: linear-gradient(90deg, rgba(16, 152, 137, 0) 0%, rgb(20, 175, 157) 60%, rgba(20, 175, 157, 0.95) 100%);
+}
+
+.hero-divider-line.flank-right {
+  background: linear-gradient(90deg, rgba(20, 175, 157, 0.95) 0%, rgb(20, 175, 157) 40%, rgba(16, 152, 137, 0) 100%);
+}
+
+.hero-bottom-dot-left {
+  position: absolute;
+  left: 5vw;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--teal-primary);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hero-bottom-centerpiece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 0 16px;
+  z-index: 10;
+}
+
+.since-text {
+  font-family: var(--font-condensed);
+  font-size: clamp(18px, 1.4vw, 24px);
+  font-weight: 700;
+  color: var(--teal-primary);
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.oven-flame-emblem {
+  position: relative;
+  width: 58px;
+  height: 46px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.emblem-oven {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.emblem-flame {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Redes Sociais no lado direito da linha brilhante (Prints 2 & 5) */
+.hero-social-links {
+  position: absolute;
+  right: 5vw;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 12;
+}
+
+.social-circle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  background-color: var(--teal-primary);
+  color: #08211e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none !important;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.social-circle-btn:hover {
+  background-color: var(--teal-hover);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.social-circle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Decorative Circles (Foguinhos aumentados e imponentes nas laterais da pizza, emoldurando a hero) */
+.hero-deco-left {
+  position: absolute;
+  top: calc(50% + 20px);
+  transform: translateY(-50%);
+  left: calc(50% - clamp(480px, 43vw, 620px));
+  width: clamp(230px, 21vw, 330px);
+  opacity: 0.95;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hero-deco-left img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-deco-right {
+  position: absolute;
+  top: calc(50% + 15px);
+  transform: translateY(-50%);
+  right: calc(50% - clamp(480px, 43vw, 620px));
+  width: clamp(230px, 21vw, 330px);
+  opacity: 0.95;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hero-deco-right > img:first-child {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-deco-right .stamp-overlay {
+  display: none;
+}
+
+.hero-deco-glyph {
+  position: absolute;
+  top: 71%;
+  left: 6.5%;
+  width: 50px;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.hero-mobile-nav-links {
+  display: none;
+}
+
+
+/* ==========================================================================
+   2. NAVIGATION GRID TABS
+   ========================================================================== */
+.nav-tabs-section {
+  width: 100%;
+  background-color: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-tabs-grid {
+  display: grid;
+  grid-template-columns: 384fr 579fr 565fr 392fr;
+  width: 100%;
+}
+
+.nav-tab-item {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid var(--teal-border);
+  transition: opacity 0.2s ease;
+}
+
+.nav-tab-item:last-child {
+  border-right: none;
+}
+
+.nav-tab-header {
+  height: 136px;
+  background-color: var(--teal-primary);
+  border-top: 2px solid var(--teal-border);
+  border-bottom: 2px solid var(--teal-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  transition: background-color 0.2s ease;
+}
+
+.nav-tab-item:hover .nav-tab-header,
+.nav-tab-item.active .nav-tab-header {
+  background-color: var(--teal-hover);
+}
+
+.tab-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.8vw, 4.6rem);
+  color: var(--color-offwhite);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.tab-chevron {
+  width: 32px;
+  height: auto;
+  opacity: 0.9;
+}
+
+.nav-tab-panel {
+  height: clamp(800px, 84vh, 960px);
+  background-color: #0c0908;
+  border-bottom: 2px solid var(--teal-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-tab-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-tab-item:hover .nav-tab-img {
+  transform: scale(1.08); /* Directive 9: zoom na imagem dentro do container */
+}
+
+
+/* ==========================================================================
+   3. WELCOME SECTION
+   ========================================================================== */
+.welcome-section {
+  width: 100%;
+  background-color: transparent;
+  position: relative;
+}
+
+/* Teal Banner */
+.welcome-banner {
+  width: 100%;
+  height: 344px;
+  background-color: var(--teal-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter);
+}
+
+.welcome-banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 9.2vw, 10.5rem);
+  color: var(--teal-light);
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+/* Chef Image Wrapper */
+.welcome-chef-wrapper {
+  width: 100%;
+  height: 699px;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-chef-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.welcome-chef-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Two-Column Story Split (Conteúdo na Esquerda, Foto na Direita) */
+.welcome-story-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 100px var(--gutter) 140px;
+  gap: 4rem;
+  position: relative;
+  align-items: center;
+}
+
+.welcome-vertical-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(20, 175, 157, 0) 0%, rgb(20, 175, 157) 25%, rgb(20, 175, 157) 75%, rgba(20, 175, 157, 0) 100%);
+  pointer-events: none;
+}
+
+.story-left-panel {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.story-image-box {
+  width: 675px;
+  max-width: 100%;
+  height: 791px;
+  border: 1.5px solid var(--teal-border);
+  position: relative;
+  overflow: hidden;
+  background-color: #0c0908;
+}
+
+.story-clean-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-image-box:hover .story-clean-img {
+  transform: scale(1.06);
+}
+
+.story-right-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 780px;
+}
+
+.story-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 7.8vw, 8.8rem);
+  line-height: 1.05;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+}
+
+.story-paragraph {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 1.8vw, 2.25rem);
+  line-height: 1.45;
+  color: var(--color-white);
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.story-cta-wrapper {
+  display: flex;
+}
+
+
+/* ==========================================================================
+   4. AS FAVORITAS DA CASA
+   ========================================================================== */
+.favorites-section {
+  width: 100%;
+  background-color: transparent;
+  padding: 120px 0 160px;
+  position: relative;
+}
+
+.fav-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fav-line.line-left {
+  left: 6.25%;
+}
+
+.fav-line.line-right {
+  right: 6.25%;
+}
+
+.fav-line img {
+  height: 100%;
+  width: 2px;
+  object-fit: cover;
+}
+
+.favorites-title {
+  font-family: var(--font-display);
+  font-size: clamp(4.8rem, 9.5vw, 11.5rem);
+  color: var(--teal-primary);
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 5rem;
+}
+
+.favorites-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.food-card {
+  height: 667px;
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--teal-accent);
+  position: relative;
+  overflow: hidden; /* Corta a imagem interna no zoom */
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2rem;
+  transition: border-color 0.2s ease;
+}
+
+.food-card:hover {
+  border-color: var(--teal-light);
+}
+
+.food-card-bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.food-card:hover .food-card-bg-layer {
+  transform: scale(1.08); /* Directive 9: zoom na imagem da home */
+}
+
+/* Card custom backgrounds */
+#food-card-1 .food-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.8) 0%, rgba(20, 17, 16, 0.94) 100%), url('../assets/images/hero-pizza.png');
+}
+#food-card-2 .food-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.8) 0%, rgba(20, 17, 16, 0.94) 100%), url('../assets/images/pizza-ingredients.png');
+}
+#food-card-3 .food-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.8) 0%, rgba(20, 17, 16, 0.94) 100%), url('../assets/images/burger-close.png');
+}
+#food-card-4 .food-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.8) 0%, rgba(20, 17, 16, 0.94) 100%), url('../assets/images/burger-beer.png');
+}
+
+.food-card-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.food-card-top-tag {
+  font-family: var(--font-condensed);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--teal-accent);
+  border-bottom: 1px solid rgba(20, 175, 157, 0.45);
+  padding-bottom: 0.75rem;
+}
+
+.food-card-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 3.5vw, 3rem);
+  line-height: 1.1;
+  color: var(--color-white);
+  letter-spacing: 1px;
+  margin-bottom: 1.25rem;
+}
+
+.food-card-desc {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+
+.food-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(20, 175, 157, 0.45);
+  padding-top: 1.25rem;
+}
+
+.food-card-price {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--teal-light);
+}
+
+.food-card-badge {
+  font-family: var(--font-condensed);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #109889;
+  letter-spacing: 1.5px;
+}
+
+.favorites-cta-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ==========================================================================
+   5. EDITORIAL COLLAGE ("HÁ SABORES QUE ALIMENTAM MEMÓRIAS")
+   Seção Pinned 100vh, Fake Scroll com GSAP e Parallax
+   - Palavras movem mais devagar com transição de opacidade suave
+   - Imagens movem mais rápido (parallax cinético) e entram 100% sólidas
+   ========================================================================== */
+.memories-section {
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: var(--teal-primary);
+  position: relative;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.memories-editorial-canvas {
+  position: relative;
+  width: 100%;
+  max-width: var(--canvas-max-width);
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.collage-item {
+  position: absolute;
+  will-change: transform;
+}
+
+.huge-editorial-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8.8vw, 10.8rem);
+  color: var(--teal-light);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow: none !important;
+  text-align: center;
+}
+
+/* --- Posicionamento Editorial Assimétrico das Palavras (Menos Simétricas) --- */
+.text-item {
+  top: 0;
+  position: absolute;
+  width: auto;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 1 !important;
+  visibility: visible !important;
+  white-space: nowrap;
+}
+
+.text-item .huge-editorial-title {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Offsets assimétricos arrojados que quebram a simetria monótona do centro */
+.text-ha-sabores {
+  left: 42%;
+  transform: translateX(-50%);
+}
+
+.text-que {
+  left: 64%;
+  transform: translateX(-50%);
+}
+
+.text-alimentam {
+  left: 40%;
+  transform: translateX(-50%);
+}
+
+.text-outros {
+  left: 37%;
+  transform: translateX(-50%);
+}
+
+.text-criam {
+  left: 62%;
+  transform: translateX(-50%);
+}
+
+.text-memorias {
+  left: 48%;
+  transform: translateX(-50%);
+}
+
+/* --- Imagens: 100% Sólidas, SEM bordas, SEM sombras, nas laterais (flancos) --- */
+.collage-item.image-item {
+  top: 0;
+  z-index: 4;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto;
+}
+
+.collage-item.image-item .image-frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.collage-item.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: none !important;
+  box-shadow: none !important;
+  filter: contrast(1.05) brightness(0.98);
+}
+
+/* Flancos Laterais com margens bem definidas e posições espalhadas dinamicamente */
+.img-flank-left {
+  left: 3vw;
+  right: auto;
+}
+
+.img-flank-right {
+  right: 3vw;
+  left: auto;
+}
+
+/* Proporções equilibradas e posições espalhadas das 6 fotos */
+.img-family {
+  left: 4.5vw;
+  width: min(390px, 27vw);
+}
+.img-family .image-frame {
+  height: min(280px, 19.5vw);
+}
+
+.img-burger-close {
+  right: 5.5vw;
+  width: min(350px, 24vw);
+}
+.img-burger-close .image-frame {
+  height: min(255px, 18vw);
+}
+
+.img-ingredients {
+  left: 7.5vw;
+  width: min(380px, 26vw);
+}
+.img-ingredients .image-frame {
+  height: min(270px, 19vw);
+}
+
+.img-burger-beer {
+  right: 3.5vw;
+  width: min(370px, 25.5vw);
+}
+.img-burger-beer .image-frame {
+  height: min(265px, 18.5vw);
+}
+
+.img-wood-oven {
+  left: 5vw;
+  width: min(390px, 27vw);
+}
+.img-wood-oven .image-frame {
+  height: min(275px, 19vw);
+}
+
+.img-restaurant {
+  right: 7vw;
+  width: min(360px, 25vw);
+}
+.img-restaurant .image-frame {
+  height: min(260px, 18.5vw);
+}
+
+@media (max-width: 768px) {
+  .huge-editorial-title {
+    font-size: clamp(2.8rem, 10vw, 4.4rem);
+  }
+  .text-ha-sabores { left: 45%; }
+  .text-que { left: 58%; }
+  .text-alimentam { left: 42%; }
+  .text-outros { left: 40%; }
+  .text-criam { left: 58%; }
+  .text-memorias { left: 48%; }
+  
+  .img-flank-left {
+    left: 2vw;
+    width: 38vw;
+  }
+  .img-flank-right {
+    right: 2vw;
+    width: 38vw;
+  }
+}
+
+
+/* ==========================================================================
+   6. BURGERS ARTESANAIS
+   ========================================================================== */
+.burger-feature-section {
+  width: 100%;
+  background-color: transparent;
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.burger-vertical-line {
+  position: absolute;
+  left: 68.75%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(20, 175, 157, 0) 0%, rgb(20, 175, 157) 25%, rgb(20, 175, 157) 75%, rgba(20, 175, 157, 0) 100%);
+  pointer-events: none;
+}
+
+.burger-container {
+  width: 100%;
+  max-width: 1740px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.burger-header-block {
+  margin-bottom: 3.5rem;
+}
+
+.burger-eyebrow {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.3vw, 4rem);
+  font-weight: 400;
+  color: var(--color-white);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.burger-headline {
+  font-family: var(--font-display);
+  font-size: clamp(4.8rem, 9.5vw, 11.5rem);
+  color: var(--teal-primary);
+  line-height: 1.08;
+  letter-spacing: 2px;
+  max-width: 1680px;
+}
+
+.burger-content-split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.burger-text-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 760px;
+}
+
+.burger-desc {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 1.8vw, 2.25rem);
+  line-height: 1.45;
+  color: var(--color-white);
+  margin-bottom: 3.5rem;
+}
+
+.burger-cta-box {
+  display: flex;
+}
+
+.burger-image-col {
+  display: flex;
+  justify-content: center;
+}
+
+.burger-photo-frame {
+  width: 100%;
+  max-width: 830px;
+  height: 519px;
+  position: relative;
+  overflow: hidden;
+}
+
+.burger-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+}
+
+
+/* ==========================================================================
+   7. COMBOS ESPECIAIS
+   ========================================================================== */
+.combos-section {
+  width: 100%;
+  background-color: transparent;
+  padding: 120px 0 160px;
+  position: relative;
+}
+
+.combos-vertical-line {
+  position: absolute;
+  left: 56.25%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(20, 175, 157, 0) 0%, rgb(20, 175, 157) 25%, rgb(20, 175, 157) 75%, rgba(20, 175, 157, 0) 100%);
+  pointer-events: none;
+}
+
+.combos-title {
+  font-family: var(--font-display);
+  font-size: clamp(4.8rem, 9.5vw, 11.5rem);
+  color: var(--teal-primary);
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 5rem;
+}
+
+.combos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.5rem;
+  max-width: 1400px;
+  margin: 0 auto 4.5rem;
+}
+
+.combo-card {
+  height: 450px;
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--teal-accent);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden; /* Corta imagem no zoom */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.2s ease;
+  cursor: default;
+}
+
+.combo-card:hover {
+  border-color: var(--teal-light);
+}
+
+/* Directive 5 & 9: Combos com foto transparente no fundo e zoom no hover */
+.combo-card-bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.combo-card:hover .combo-card-bg-layer {
+  transform: scale(1.08); /* Directive 9: zoom na imagem dos combos */
+}
+
+#combo-card-1 .combo-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.82) 0%, rgba(20, 17, 16, 0.95) 100%), url('../assets/images/hero-pizza.png');
+}
+#combo-card-2 .combo-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.82) 0%, rgba(20, 17, 16, 0.95) 100%), url('../assets/images/burger-feature.png');
+}
+#combo-card-3 .combo-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.82) 0%, rgba(20, 17, 16, 0.95) 100%), url('../assets/images/wood-oven-fire.png');
+}
+#combo-card-4 .combo-card-bg-layer {
+  background-image: linear-gradient(180deg, rgba(20, 17, 16, 0.82) 0%, rgba(20, 17, 16, 0.95) 100%), url('../assets/images/chef-making-pizza.png');
+}
+
+.combo-card-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.combo-badge {
+  font-family: var(--font-condensed);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--teal-accent);
+  border-bottom: 1px solid rgba(20, 175, 157, 0.3);
+  padding-bottom: 0.75rem;
+}
+
+.combo-name {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--color-white);
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.combo-items {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+
+.combo-footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-top: 1px solid rgba(20, 175, 157, 0.3);
+  padding-top: 1.5rem;
+}
+
+.combo-price {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--teal-light);
+}
+
+
+/* ==========================================================================
+   8. DELIVERY STRIP / VENHA NOS VISITAR
+   ========================================================================== */
+.delivery-strip-section {
+  width: 100%;
+  background-color: transparent;
+  position: relative;
+  z-index: 5;
+}
+
+.delivery-strip-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+.delivery-half {
+  display: flex;
+  flex-direction: column;
+  border-right: 3px solid var(--teal-border);
+}
+
+.delivery-half:last-child {
+  border-right: none;
+}
+
+.strip-action-header {
+  height: 154px;
+  background-color: var(--teal-primary);
+  border-top: 3px solid var(--teal-border);
+  border-bottom: 3px solid var(--teal-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  transition: background-color 0.2s ease;
+}
+
+.strip-action-header:hover {
+  background-color: var(--teal-hover);
+}
+
+.strip-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.1vw, 5rem);
+  color: var(--color-white);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.strip-chevron {
+  width: 44px;
+  height: auto;
+}
+
+/* Directive 6: Foto rica sem branco, texto e botão no hover, botão redondo que segue o mouse */
+.delivery-half {
+  position: relative;
+  overflow: hidden;
+}
+
+.strip-gray-panel {
+  height: 833px;
+  background-color: #0c0908;
+  border-bottom: 3px solid var(--teal-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  cursor: default;
+}
+
+.strip-gray-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 8, 7, 0.72); /* Muito menos branco: overlay escuro elegante */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.delivery-half:hover .strip-gray-panel::before {
+  opacity: 1;
+}
+
+.left-half .strip-gray-panel {
+  background-image: linear-gradient(180deg, rgba(12, 10, 9, 0.35) 0%, rgba(12, 10, 9, 0.65) 100%), url('../assets/images/burger-feature.png');
+}
+
+.right-half .strip-gray-panel {
+  background-image: linear-gradient(180deg, rgba(12, 10, 9, 0.35) 0%, rgba(12, 10, 9, 0.65) 100%), url('../assets/images/restaurant-interior.png');
+}
+
+.panel-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  opacity: 0; /* Directive 6: Escondido por padrão */
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+.delivery-half:hover .panel-content {
+  opacity: 1; /* Directive 6: Aparece no hover */
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.panel-headline {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--teal-light);
+  letter-spacing: 2px;
+  margin-bottom: 1.25rem;
+}
+
+.panel-text {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.6;
+  color: var(--color-white-pure);
+  margin-bottom: 0;
+  text-shadow: none !important;
+}
+
+
+
+/* ==========================================================================
+   9. AVALIAÇÕES (TESTIMONIALS)
+   ========================================================================== */
+.testimonials-section {
+  width: 100%;
+  background-color: transparent;
+  padding: 140px 0 160px;
+  position: relative;
+}
+
+.testimonials-vertical-line {
+  position: absolute;
+  left: 56.25%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  pointer-events: none;
+}
+
+.testimonials-vertical-line img {
+  height: 100%;
+  width: 2px;
+  object-fit: cover;
+}
+
+.testimonials-title {
+  font-family: var(--font-display);
+  font-size: clamp(4.8rem, 9.5vw, 11.5rem);
+  color: var(--teal-primary);
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 2px;
+  margin-bottom: 5rem;
+}
+
+.testimonial-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.carousel-nav-btn {
+  width: 73px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carousel-nav-btn:hover {
+  opacity: 1;
+}
+
+.carousel-nav-btn img {
+  width: 44px;
+  height: auto;
+}
+
+/* Seta de voltar virada para a esquerda (Ponto 7) */
+.carousel-nav-btn.btn-prev img {
+  transform: scaleX(-1);
+}
+
+.testimonial-card-frame {
+  width: 667px;
+  height: 450px;
+  max-width: 80vw;
+  background-color: transparent !important;
+  border: 1.5px solid var(--teal-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 4rem;
+  text-align: center;
+  position: relative;
+}
+
+.testimonial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-stars {
+  font-size: 1.6rem;
+  color: #ffb703;
+  margin-bottom: 1.5rem;
+  letter-spacing: 4px;
+}
+
+.testimonial-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--color-white);
+  margin-bottom: 2rem;
+  quotes: "“" "”";
+}
+
+.testimonial-author {
+  font-family: var(--font-condensed);
+  font-size: 1.15rem;
+  letter-spacing: 1.5px;
+  color: var(--teal-accent);
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2.5rem;
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--teal-accent);
+  background-color: transparent;
+  cursor: default;
+  transition: background-color 0.2s ease;
+}
+
+.indicator-dot.active {
+  background-color: var(--teal-accent);
+}
+
+
+/* ==========================================================================
+   10. DÚVIDAS FREQUENTES (FAQ)
+   ========================================================================== */
+.faq-section {
+  width: 100%;
+  background-color: var(--bg-dark);
+  padding: 140px 0 160px;
+  position: relative;
+}
+
+.faq-container {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 5rem;
+  width: 100%;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* Left Column */
+.faq-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-section-header {
+  margin-bottom: 4rem;
+}
+
+.faq-title-highlight {
+  font-family: var(--font-display);
+  font-size: clamp(4.8rem, 9.5vw, 11.5rem);
+  color: var(--teal-primary);
+  line-height: 0.95;
+  letter-spacing: 2px;
+}
+
+.faq-title-white {
+  font-family: var(--font-display);
+  font-size: clamp(4.8rem, 9.5vw, 11.5rem);
+  color: var(--color-white);
+  line-height: 0.95;
+  letter-spacing: 2px;
+}
+
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-accordion-item {
+  width: 100%;
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 0;
+  text-align: left;
+}
+
+.question-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 1.9vw, 2.25rem); /* 36px in figma */
+  color: var(--color-white-pure);
+  line-height: 1.3;
+}
+
+.faq-toggle-icon {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 1.5rem;
+}
+
+.icon-line {
+  position: absolute;
+  background-color: var(--teal-accent);
+}
+
+.icon-line.h-line {
+  width: 30px;
+  height: 4px;
+}
+
+.icon-line.v-line {
+  width: 4px;
+  height: 30px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.faq-accordion-item.open .icon-line.v-line {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding-bottom 0.35s ease;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.faq-accordion-item.open .faq-answer-panel {
+  grid-template-rows: 1fr;
+  padding-bottom: 1.5rem;
+}
+
+.faq-answer-content {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.faq-answer-panel p {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.faq-item-separator {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(20, 175, 157) 0%, rgba(20, 175, 157, 0.4) 75%, rgba(16, 10, 9, 0) 100%);
+}
+
+/* Right Column */
+.faq-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.faq-oven-photo-frame {
+  width: 100%;
+  max-width: 695px;
+  height: 648px;
+  overflow: hidden;
+  border: 1px solid var(--teal-accent);
+}
+
+.faq-oven-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.faq-whatsapp-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.whatsapp-title-teal {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 6rem); /* 96px in figma */
+  color: var(--teal-primary);
+  line-height: 0.95;
+  letter-spacing: 1px;
+}
+
+.whatsapp-title-white {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 6rem);
+  color: var(--color-white);
+  line-height: 0.95;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.whatsapp-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.btn-whatsapp {
+  width: 461px;
+  max-width: 100%;
+  height: 86px;
+}
+
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+.site-footer {
+  width: 100%;
+  background-color: var(--teal-primary); /* Fundo azul/teal vibrante como antes */
+  border-top: 3px solid var(--teal-border);
+  padding: 85px 5vw 45px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Giant Watermark Script "Bingen" in background with mix-blend */
+.footer-script-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1520px;
+  opacity: 0.65;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footer-script-watermark img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-tripletta-container {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+}
+
+/* 1. Linha Superior de Links Minimalistas com Chevron */
+.footer-nav-links-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.footer-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-condensed);
+  font-size: clamp(15px, 1.3vw, 19px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-nav-item:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.footer-nav-item .nav-chevron {
+  color: var(--teal-light);
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* 2. Titular Neo-Brutalista Monumental Edge-to-Edge */
+.footer-monumental-brand {
+  padding: 55px 0 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.footer-huge-title {
+  font-family: var(--font-display);
+  font-size: clamp(6.5rem, 17vw, 20rem);
+  line-height: 0.82;
+  letter-spacing: clamp(4px, 1.4vw, 14px);
+  text-transform: uppercase;
+  color: var(--color-white-pure); /* Branco puro sobre o fundo azul teal */
+  margin: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-shadow: none !important;
+}
+
+.footer-huge-sub {
+  font-family: var(--font-condensed);
+  font-size: clamp(26px, 4.2vw, 60px);
+  font-weight: 700;
+  letter-spacing: clamp(6px, 2vw, 22px);
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-top: 14px;
+}
+
+/* 3. Linha Inferior de Créditos e Contato */
+.footer-bottom-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-meta-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-meta-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-meta-right a {
+  color: var(--color-white-pure);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.footer-meta-right a:hover {
+  opacity: 0.8;
+}
+
+
+/* ==========================================================================
+   RESPONSIVENESS (1440px -> 1024px -> 768px -> 390px)
+   ========================================================================== */
+
+/* Medium Desktops & Tablets Landscape (<= 1200px) */
+@media (max-width: 1200px) {
+  .favorites-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .burger-content-split {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-columns-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets (<= 992px) */
+@media (max-width: 992px) {
+  .nav-tabs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-tab-item {
+    border-bottom: 2px solid var(--teal-border);
+  }
+
+  .nav-tab-panel {
+    height: clamp(480px, 58vh, 580px);
+  }
+
+  .welcome-story-block {
+    grid-template-columns: 1fr;
+    padding: 60px var(--gutter) 80px;
+  }
+
+  .welcome-vertical-line {
+    display: none;
+  }
+
+  .story-left-panel {
+    justify-content: center;
+  }
+
+  .story-image-box {
+    height: 500px;
+  }
+
+  .combos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .delivery-strip-split {
+    grid-template-columns: 1fr;
+  }
+
+  .delivery-half {
+    border-right: none;
+    border-bottom: 3px solid var(--teal-border);
+  }
+
+  .strip-gray-panel {
+    height: 480px;
+  }
+
+  /* Memories section responsive pinned 100vh */
+  .memories-section {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .memories-editorial-canvas {
+    height: 100%;
+    position: relative;
+    overflow: visible;
+  }
+
+  .huge-editorial-title {
+    font-size: clamp(3.2rem, 9.5vw, 6.5rem);
+  }
+
+  .img-family { width: 55vw; }
+  .img-family .image-frame { height: 36vw; }
+
+  .img-burger-close { width: 34vw; }
+  .img-burger-close .image-frame { height: 28vw; }
+
+  .img-ingredients { width: 44vw; }
+  .img-ingredients .image-frame { height: 30vw; }
+
+  .img-burger-beer { width: 44vw; }
+  .img-burger-beer .image-frame { height: 30vw; }
+
+  .img-wood-oven { width: 48vw; }
+  .img-wood-oven .image-frame { height: 36vw; }
+
+  .img-restaurant { width: 46vw; }
+  .img-restaurant .image-frame { height: 30vw; }
+}
+
+/* Mobile Devices (<= 768px & 390px) */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  /* 1. Hero Section Mobile (Tripletta Clean & Monumental) */
+  .hero-section {
+    height: auto;
+    min-height: auto;
+    padding: 36px 20px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-vertical-line {
+    display: none;
+  }
+
+  /* Badge Topo Centralizado */
+  .hero-top-right-badge {
+    position: static;
+    margin: 0 auto 16px;
+    justify-content: center;
+    gap: 0.75rem;
+    z-index: 10;
+  }
+
+  .hero-top-right-badge img {
+    width: 42px;
+  }
+
+  .badge-title, .badge-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* Logotipo Marca d'Água Centralizado */
+  .hero-script-watermark {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    max-width: 460px;
+    opacity: 0.38;
+  }
+
+  /* Pizza Centralizada */
+  .hero-pizza-wrapper {
+    position: relative;
+    transform: none;
+    left: auto;
+    top: auto;
+    margin: 12px auto 14px;
+    width: clamp(250px, 70vw, 310px);
+    max-width: 80vw;
+    z-index: 6;
+  }
+
+  /* Foguinhos Laterais Grandes e Emoldurados sem Transbordar */
+  .hero-deco-left {
+    display: block;
+    position: absolute;
+    top: 220px;
+    left: clamp(2px, calc(50% - 185px), 25px);
+    transform: translateY(-50%);
+    width: clamp(80px, 22vw, 105px);
+    z-index: 5;
+  }
+
+  .hero-deco-right {
+    display: block;
+    position: absolute;
+    top: 220px;
+    right: clamp(2px, calc(50% - 185px), 25px);
+    transform: translateY(-50%);
+    width: clamp(80px, 22vw, 105px);
+    z-index: 5;
+  }
+
+  /* Headline Compacta */
+  .hero-headline-capsule {
+    position: static;
+    transform: none;
+    margin: 6px auto 16px;
+    padding: 0.2rem 1.4rem;
+    background-color: var(--bg-hero);
+    z-index: 8;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+  }
+
+  /* Barra Inferior com Forno e Redes Sociais Centralizados (Ponto 5 ampliado) */
+  .hero-bottom-bar {
+    position: static;
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 0;
+    z-index: 10;
+  }
+
+  .hero-divider-line, .hero-bottom-dot-left {
+    display: none;
+  }
+
+  .hero-bottom-centerpiece {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .since-text {
+    font-size: 22px;
+    letter-spacing: 4.5px;
+    font-weight: 700;
+  }
+
+  .oven-flame-emblem {
+    width: 56px;
+    height: 44px;
+  }
+
+  .emblem-flame {
+    width: 22px;
+  }
+
+  .hero-social-links {
+    position: static;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 2px;
+  }
+
+  .social-circle-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .social-circle-btn svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  /* 2. Tabs de Navegação Inicial - CARDS MAIS ALTOS (Tripletta) */
+  .nav-tabs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-tab-item {
+    border-right: none;
+    border-bottom: 2px solid var(--teal-border);
+  }
+
+  .nav-tab-header {
+    height: 84px;
+    padding: 0 5vw;
+    background-color: var(--teal-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-tab-header .tab-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 8vw, 3.2rem);
+    letter-spacing: 2px;
+    color: #061815;
+  }
+
+  .nav-tab-header .tab-chevron {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0);
+  }
+
+  .nav-tab-panel {
+    height: clamp(520px, 70vh, 640px); /* Taller card on mobile */
+    width: 100%;
+  }
+
+  .nav-tab-panel .nav-tab-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 3. Seção de Boas-Vindas Mobile */
+  .welcome-banner {
+    height: auto;
+    min-height: 180px;
+    padding: 42px 20px;
+  }
+
+  .welcome-banner-title {
+    font-size: clamp(2.8rem, 11vw, 4.4rem);
+    white-space: normal;
+    line-height: 1.05;
+  }
+
+  .welcome-chef-wrapper {
+    height: clamp(360px, 50vh, 460px);
+  }
+
+  .welcome-story-block {
+    padding: 50px 20px 70px;
+    gap: 2.5rem;
+  }
+
+  .story-image-box {
+    width: 100%;
+    height: 380px;
+    border: 1.5px solid var(--teal-border);
+  }
+
+  .story-title {
+    font-size: clamp(2.8rem, 10.5vw, 4.4rem);
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+  }
+
+  .story-paragraph {
+    font-size: clamp(1.15rem, 4.2vw, 1.35rem);
+    line-height: 1.55;
+    margin-bottom: 2rem;
+  }
+
+  .story-cta-wrapper .btn-solid-teal {
+    width: 100%;
+    max-width: 360px;
+    height: 68px;
+    font-size: 15px;
+  }
+
+  /* 4. As Favoritas Mobile (Bordas e Linhas Restauradas) */
+  .favorites-section {
+    padding: 60px 0 80px;
+  }
+
+  .fav-line {
+    display: block !important;
+    width: 1.5px;
+    opacity: 0.65;
+  }
+
+  .favorites-title {
+    font-size: clamp(3.2rem, 12vw, 5.2rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .favorites-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .food-card {
+    height: auto;
+    min-height: 480px;
+    padding: 2.2rem 1.5rem;
+    border: 1.5px solid var(--teal-accent) !important;
+  }
+
+  .food-card-top-tag {
+    border-bottom: 1px solid rgba(20, 175, 157, 0.45);
+    padding-bottom: 0.75rem;
+  }
+
+  .food-card-name {
+    font-size: clamp(2.2rem, 7.5vw, 2.8rem);
+    margin-bottom: 1rem;
+  }
+
+  .food-card-desc {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .food-card-meta {
+    border-top: 1px solid rgba(20, 175, 157, 0.45);
+    padding-top: 1.25rem;
+  }
+
+  .food-card-price {
+    font-size: 2.2rem;
+  }
+
+  .favorites-cta-wrapper .btn-solid-teal {
+    width: 100%;
+    max-width: 360px;
+    height: 68px;
+    font-size: 15px;
+  }
+
+  /* 5. Burgers Artesanais Mobile */
+  .burger-feature-section {
+    padding: 60px 0 80px;
+  }
+
+  .burger-vertical-line {
+    display: block !important;
+    width: 1.5px;
+    opacity: 0.6;
+    left: 88%;
+  }
+
+  .burger-header-block {
+    margin-bottom: 2rem;
+  }
+
+  .burger-eyebrow {
+    font-size: clamp(1.2rem, 4.5vw, 1.8rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .burger-headline {
+    font-size: clamp(3rem, 11.5vw, 4.8rem);
+    line-height: 1.05;
+  }
+
+  .burger-content-split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .burger-desc {
+    font-size: clamp(1.15rem, 4.2vw, 1.35rem);
+    line-height: 1.55;
+    margin-bottom: 2rem;
+  }
+
+  .burger-photo-frame {
+    height: auto;
+    max-height: 380px;
+  }
+
+  .burger-cta-box .btn-solid-teal {
+    width: 100%;
+    max-width: 360px;
+    height: 68px;
+    font-size: 15px;
+  }
+
+  /* 6. Combos Especiais Mobile */
+  .combos-section {
+    padding: 60px 0 80px;
+  }
+
+  .combos-vertical-line {
+    display: block !important;
+    width: 1.5px;
+    opacity: 0.6;
+    left: 12%;
+  }
+
+  .combos-title {
+    font-size: clamp(3.2rem, 12vw, 5.2rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .combos-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .combo-card {
+    height: auto;
+    min-height: 350px;
+    padding: 2.2rem 1.5rem;
+    border: 1.5px solid var(--teal-accent) !important;
+  }
+
+  .combo-card-title {
+    font-size: clamp(2rem, 7vw, 2.6rem);
+  }
+
+  .combo-desc {
+    font-size: 1.15rem;
+  }
+
+  .combos-cta-wrapper .btn-solid-teal {
+    width: 100%;
+    max-width: 360px;
+    height: 68px;
+    font-size: 15px;
+  }
+
+  /* 7. Delivery Split Banners Mobile */
+  .strip-action-header {
+    height: 74px;
+    padding: 0 5vw;
+  }
+
+  .strip-title {
+    font-size: clamp(2rem, 7vw, 2.6rem);
+  }
+
+  .strip-chevron {
+    width: 24px;
+  }
+
+  .strip-gray-panel {
+    height: 420px;
+    padding: 2rem 1.5rem;
+  }
+
+  .strip-gray-panel::before {
+    opacity: 0.7; /* Imediatamente visível no mobile */
+  }
+
+  .panel-content {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .panel-headline {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .panel-text {
+    font-size: 1.15rem;
+  }
+
+  /* 8. Avaliações Mobile (Setas ao lado, seta esquerda virada, sem background) */
+  .testimonials-section {
+    padding: 60px 0 80px;
+    background-color: transparent !important;
+  }
+
+  .testimonials-vertical-line {
+    display: block !important;
+    width: 1.5px;
+    opacity: 0.6;
+    left: 88%;
+  }
+
+  .testimonials-title {
+    font-size: clamp(3.2rem, 12vw, 5.2rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .testimonial-carousel-container {
+    display: flex;
+    flex-direction: row !important; /* Setas ao lado do card */
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 2vw, 20px);
+    width: 100%;
+  }
+
+  .carousel-nav-btn {
+    width: 42px;
+    height: 60px;
+    flex-shrink: 0;
+  }
+
+  .carousel-nav-btn.btn-prev img {
+    transform: scaleX(-1); /* Seta virada para a esquerda */
+  }
+
+  .testimonial-card-frame {
+    width: calc(100% - 96px);
+    max-width: 100%;
+    height: auto;
+    min-height: 320px;
+    padding: 2rem 1.25rem;
+    background-color: transparent !important;
+    border: 1.5px solid var(--teal-accent) !important;
+  }
+
+  .testimonial-quote {
+    font-size: clamp(1.1rem, 3.8vw, 1.35rem);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    font-size: 1rem;
+  }
+
+  /* 9. FAQ Mobile */
+  .faq-section {
+    padding: 60px 0 80px;
+  }
+
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .faq-section-header {
+    margin-bottom: 2rem;
+  }
+
+  .faq-title-highlight,
+  .faq-title-white {
+    font-size: clamp(3.2rem, 12vw, 5.2rem);
+  }
+
+  .faq-question-btn {
+    padding: 1.25rem 0;
+  }
+
+  .question-text {
+    font-size: clamp(1.15rem, 4.2vw, 1.45rem);
+  }
+
+  .faq-oven-photo-frame {
+    height: 280px;
+    max-width: 100%;
+    border: 1.5px solid var(--teal-accent);
+  }
+
+  .whatsapp-title-teal,
+  .whatsapp-title-white {
+    font-size: clamp(2.4rem, 8.5vw, 3.4rem);
+  }
+
+  .whatsapp-subtitle {
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-whatsapp {
+    width: 100%;
+    height: 68px;
+    font-size: 15px;
+  }
+
+  /* 10. Footer Neo-Brutalista Tripletta Mobile */
+  .site-footer {
+    padding: 60px 5vw 35px;
+  }
+
+  .footer-nav-links-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 24px;
+  }
+
+  .footer-nav-item {
+    font-size: 17px;
+  }
+
+  .footer-monumental-brand {
+    padding: 35px 0 30px;
+  }
+
+  .footer-huge-title {
+    font-size: clamp(4.2rem, 16.5vw, 7.8rem);
+    letter-spacing: 3px;
+  }
+
+  .footer-huge-sub {
+    font-size: clamp(18px, 5.5vw, 28px);
+    letter-spacing: clamp(4px, 1.5vw, 10px);
+    margin-top: 8px;
+  }
+
+  .footer-bottom-meta-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding-top: 20px;
+  }
+
+  .footer-meta-left,
+  .footer-meta-right {
+    justify-content: center;
+  }
+
+  .footer-bottom-meta-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding-top: 20px;
+  }
+
+  .footer-meta-left,
+  .footer-meta-right {
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   CUSTOM INTERACTIVE CURSOR (BOLINHA ÚNICA)
+   - Bolinha única que segue o ponteiro (sem bola grande duplicada ou neon)
+   - Em repouso: bolinha pequena sólida teal (10px) centralizada no mouse
+   - No hover: a própria bolinha pequena se expande para 78px exibindo a ação
+   - Zero neon / zero glow
+   ========================================================================== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% !important;
+  background-color: var(--teal-primary);
+  border: none !important;
+  box-shadow: none !important; /* Sem neon */
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease;
+}
+
+.custom-cursor .cursor-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  line-height: 1.05;
+  pointer-events: none;
+}
+
+.custom-cursor .cursor-action-text {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.custom-cursor .cursor-action-chevron {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 0.8;
+  margin-top: 2px;
+}
+
+/* Quando expande no hover de botões, cards ou menu */
+.custom-cursor.cursor-expanded {
+  width: 86px;
+  height: 86px;
+  background-color: var(--teal-primary);
+  box-shadow: none !important;
+}
+
+.custom-cursor.cursor-expanded .cursor-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Efeito tátil de clique */
+.custom-cursor.cursor-pressed {
+  transform: translate3d(-50%, -50%, 0) scale(0.9);
+}
+
+/* Desativação em telas touch */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   FLOATING DELIVERY ORDER BUTTON (Sem efeito neon)
+   ========================================================================== */
+.floating-delivery-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 68px;
+  height: 68px;
+  border-radius: 50% !important;
+  background-color: var(--teal-primary) !important;
+  color: #8FDDD5 !important;
+  border: 3px solid #8FDDD5 !important; /* Borda #8FDDD5 mais grossinha */
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: default;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.floating-delivery-btn:hover {
+  background-color: var(--teal-hover) !important;
+  border-color: #ffffff !important;
+  transform: scale(1.08);
+  box-shadow: none !important;
+}
+
+.floating-delivery-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-delivery-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #8FDDD5; /* Ícone #8FDDD5 */
+}
+
+@media (max-width: 640px) {
+  .floating-delivery-btn {
+    bottom: 18px;
+    right: 18px;
+    width: 58px;
+    height: 58px;
+  }
+  .floating-delivery-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Directive: Preservar o cursor de seta normal em todo o site, mas NUNCA exibir a mãozinha (pointer) em hover */
+* {
+  cursor: default;
+}
+input:not([type="button"]):not([type="submit"]):not([type="reset"]), textarea {
+  cursor: text !important;
+}
+a, button, input[type="button"], input[type="submit"], [role="button"], label,
+.btn-solid-teal, .btn-back-clean, .combo-card, .food-card, .tripletta-card,
+.nav-tab-item, .faq-question-btn, .carousel-nav-btn, .indicator-dot,
+.strip-action-header, .strip-gray-panel, .floating-delivery-btn,
+.category-tab-btn, .header-cart-btn, .search-clear-btn, .meio-meio-featured-card,
+.footer-nav-item, .footer-meta-right a {
+  cursor: default !important;
+}
+

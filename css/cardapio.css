@@ -1,0 +1,2120 @@
+/* ==========================================================================
+   BINGEN PIZZA & BURGER - CARDÁPIO & DELIVERY SYSTEM
+   Fidelidade 100% à Home, Neo-Brutalista, Quadrado, Rústico, Sem Glassmorphism
+   ========================================================================== */
+
+/* --- CSS Variables & Design Tokens (Idênticos à Home) --- */
+:root {
+  /* Background Colors */
+  --bg-hero: #090402;
+  --bg-dark: #141111;
+  --bg-card: #141110;
+  --bg-panel-gray: #d9d9d9;
+  
+  /* Teal Palette - Directive 5 (#0C9C8E) & Directive 6 (#097268) */
+  --teal-primary: #0C9C8E;
+  --teal-hover: #097268;
+  --teal-accent: #0C9C8E;
+  --teal-border: #0b5e55;
+  --teal-border-dark: #084c45;
+  --teal-cta: #0C9C8E;
+  --teal-light: #8fddd5;
+  --teal-glow: #0C9C8E;
+  --teal-gradient-start: rgba(12, 156, 142, 0);
+  --teal-gradient-mid: rgb(12, 156, 142);
+  --teal-gradient-end: rgba(12, 156, 142, 0);
+
+  /* Typography Colors */
+  --color-white: #efefef;
+  --color-white-pure: #ffffff;
+  --color-offwhite: #e3e3e3;
+  --color-muted: rgba(255, 255, 255, 0.7);
+  --color-subtle: #a5a2a0;
+  --color-text-body: #efefef;
+
+  /* Font Families */
+  --font-display: 'Anton', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Bree Serif', Georgia, serif;
+  --font-condensed: 'Barlow Condensed', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-ui: 'Poppins', sans-serif;
+
+  /* Layout */
+  --max-content-width: 1440px;
+  --gutter: 32px;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-shadow: none !important; /* Zero sombras em todo o site */
+  text-shadow: none !important; /* Zero text-shadows em todo o site */
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto; /* Controlado via GSAP */
+  background-color: var(--bg-dark);
+  color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: transparent;
+  color: var(--color-white);
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* 1. Full-Width Background Texture (15% de opacidade, menor z-index de todos) */
+.bg-texture-layer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/hero-bg-image19.png');
+  background-repeat: repeat-y;
+  background-position: top center;
+  background-size: 100% auto;
+  opacity: 0.15; /* 15% de opacidade */
+  pointer-events: none;
+  z-index: -999;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: default;
+}
+
+.section-container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: 2;
+}
+
+/* Common Buttons - Directive 5: #0C9C8E, sem borda aparente; Directive 6: hover #097268 */
+.btn-solid-teal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--teal-primary);
+  border: none !important;
+  color: var(--color-white-pure);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.85rem 1.85rem;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.btn-solid-teal:hover {
+  background-color: var(--teal-hover);
+}
+
+/* Header Home Solid Button (Sem borda vazia, com chevron da home) */
+.btn-header-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--teal-primary);
+  border: none !important;
+  color: var(--color-white-pure);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  transition: background-color 0.2s ease;
+  cursor: default;
+}
+
+.btn-header-home:hover {
+  background-color: var(--teal-hover);
+}
+
+.header-home-chevron {
+  transform: rotate(180deg);
+  width: 13px;
+  height: auto;
+  margin-right: 0.65rem;
+}
+
+.btn-chevron-icon {
+  width: 16px;
+  height: auto;
+  margin-left: 0.65rem;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   RANDOM SCATTERED ACCENT LINES (DEGRADÊ TRANSPARENT-COLOR-TRANSPARENT)
+   Directive 1: Linhas abaixo de todo o resto (z-index: 0)
+   ========================================================================== */
+.scattered-accent-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0; /* Abaixo de todos os elementos e seções */
+}
+
+/* Linhas verticais: degradê transparent-color-transparent idêntico à Home */
+.accent-line-v {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(12, 156, 142, 0) 0%, rgb(12, 156, 142) 25%, rgb(12, 156, 142) 75%, rgba(12, 156, 142, 0) 100%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Linhas horizontais: degradê transparent-color-transparent idêntico à Home */
+.accent-line-h {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(12, 156, 142, 0) 0%, rgb(12, 156, 142) 25%, rgb(12, 156, 142) 75%, rgba(12, 156, 142, 0) 100%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Posições aleatórias nos eixos X e Y, comprimentos bem maiores, sem fechar boxes */
+.accent-line-v.al-v1 { left: 5.5%; top: 380px; height: 1300px; }
+.accent-line-v.al-v2 { left: 94.2%; top: 620px; height: 1450px; }
+.accent-line-v.al-v3 { left: 18.5%; top: 1450px; height: 1200px; }
+.accent-line-v.al-v4 { left: 82.8%; top: 1900px; height: 1380px; }
+.accent-line-v.al-v5 { left: 11.4%; top: 2650px; height: 1300px; }
+.accent-line-v.al-v6 { left: 88.5%; top: 3200px; height: 1400px; }
+.accent-line-v.al-v7 { left: 32.2%; top: 3750px; height: 1250px; }
+.accent-line-v.al-v8 { left: 71.5%; top: 4200px; height: 1350px; }
+
+.accent-line-h.al-h1 { left: 7%; top: 700px; width: 850px; }
+.accent-line-h.al-h2 { right: 5%; top: 1350px; width: 950px; }
+.accent-line-h.al-h3 { left: 16%; top: 2150px; width: 920px; }
+.accent-line-h.al-h4 { right: 12%; top: 2900px; width: 880px; }
+.accent-line-h.al-h5 { left: 5%; top: 3550px; width: 960px; }
+.accent-line-h.al-h6 { right: 8%; top: 4250px; width: 840px; }
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   HEADER NAVBAR (MINIMALIST SUBPAGE: CLEAN BACK BUTTON + CART)
+   Directive 4: Apenas botão de voltar (sem menu geral), sem background, sem borda, seta para a esquerda
+   ========================================================================== */
+.subpage-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  padding: 2.2rem var(--gutter);
+  background: transparent;
+}
+
+.subpage-header-inner {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-back-clean {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent !important;
+  border: none !important;
+  color: var(--color-white-pure);
+  font-family: var(--font-condensed);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+
+.btn-back-clean svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-back-clean:hover {
+  color: var(--teal-primary);
+  transform: translateX(-4px);
+}
+
+
+
+/* ==========================================================================
+   1. HERO 95% IMAGEM NO TOPO (PURA FOTOGRAFIA, SEM TEXTO EM CIMA)
+   ========================================================================== */
+.hero-photo-top {
+  width: 100%;
+  height: 95vh;
+  min-height: 95vh;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-hero);
+  border-bottom: 2px solid var(--teal-border);
+}
+
+.hero-photo-top-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  display: block;
+}
+
+/* ==========================================================================
+   2. SOLID TEAL BANNER (MONUMENTAL TITLE & SUBTITLE)
+   ========================================================================== */
+.cardapio-teal-banner {
+  width: 100%;
+  background-color: var(--teal-primary);
+  border-top: 2px solid var(--teal-border);
+  border-bottom: 2px solid var(--teal-border);
+  padding: 3.5rem var(--gutter);
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.cardapio-banner-container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardapio-banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6.5vw, 6.2rem);
+  line-height: 0.95;
+  letter-spacing: clamp(1.5px, 0.4vw, 3.5px);
+  color: var(--color-white-pure);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cardapio-banner-subtitle {
+  font-family: var(--font-condensed);
+  font-size: clamp(14px, 1.3vw, 18px);
+  font-weight: 700;
+  letter-spacing: clamp(3px, 0.8vw, 6px);
+  color: var(--teal-light);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. SEARCH BAR
+   Directive 4: Background sólido da mesma cor do site (#141111) para não atrapalhar leitura
+   ========================================================================== */
+/* ==========================================================================
+   3. CART & SEARCH BAR (CARRINHO ACIMA DA PESQUISA)
+   ========================================================================== */
+.search-bar-fullwidth {
+  width: 100%;
+  padding: 1.75rem var(--gutter) 1.25rem;
+  background-color: var(--bg-dark);
+  position: relative;
+  z-index: 10;
+}
+
+.search-cart-container,
+.search-cart-row {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-top-bar {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.search-bar-inner {
+  width: 100%;
+  display: flex;
+  background-color: #1a1615;
+  border: none !important;
+}
+
+.search-field-input {
+  flex: 1;
+  background-color: transparent;
+  border: none !important;
+  color: var(--color-white-pure);
+  font-family: var(--font-condensed);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  padding: 1rem 1.5rem;
+  outline: none;
+}
+
+.search-field-input::placeholder {
+  color: var(--color-subtle);
+}
+
+.search-clear-btn {
+  background-color: var(--teal-primary);
+  border: none !important;
+  color: #061815;
+  font-family: var(--font-condensed);
+  font-size: 1.05rem;
+  padding: 0 1.75rem;
+  cursor: default;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  background-color: var(--teal-hover);
+  color: #ffffff;
+}
+
+/* Botão do Carrinho na Mesma Linha da Barra de Pesquisa (Zero Bordas Finas) */
+.header-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--teal-primary);
+  border: none !important;
+  color: #061815;
+  font-family: var(--font-condensed);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0 1.25rem;
+  height: 42px;
+  cursor: default;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-cart-btn:hover {
+  background-color: var(--teal-hover);
+  color: #ffffff;
+}
+
+.cart-label {
+  color: inherit;
+}
+
+.cart-counter-box {
+  background-color: rgba(6, 24, 21, 0.28);
+  color: #ffffff;
+  padding: 3px 8px;
+  border: none !important;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.cart-price-box {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border: none !important;
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   4. FULLSCREEN CATEGORY FILTERS (ZERO GAP, CHEVRONS)
+   Directive 1: flex-wrap nowrap com rolagem horizontal para nunca quebrar e esticar botão sozinho
+   Directive 3: Altura equilibrada (min-height: 58px)
+   Directive 5 & 6: #0C9C8E, hover #097268
+   Directive 12: Bordas escuras nos menus grandes
+   ========================================================================== */
+.category-nav-tabs-fullscreen {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap; /* Linha contínua elegante sem botão órfão gigante */
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--bg-dark);
+  border-bottom: 2px solid var(--teal-border-dark);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.category-nav-tabs-fullscreen::-webkit-scrollbar {
+  display: none;
+}
+
+.category-tab-btn {
+  flex: 1 0 auto; /* Tamanho proporcional, nunca se estica sozinho */
+  min-height: 58px;
+  background-color: var(--teal-primary);
+  border: none;
+  border-right: 1px solid #08554d; /* Divisória escura */
+  padding: 0 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  cursor: default;
+  transition: background-color 0.2s ease;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+.category-tab-btn:hover,
+.category-tab-btn.active {
+  background-color: var(--teal-hover); /* #097268 */
+}
+
+.tab-btn-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.3vw, 1.35rem);
+  letter-spacing: 1px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tab-chevron {
+  width: 14px;
+  height: auto;
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   CARD DESTACADO: PIZZA MEIO A MEIO (Directive 2)
+   ========================================================================== */
+.meio-meio-featured-card {
+  width: 100%;
+  background-color: var(--bg-card);
+  border: 1px solid #1a2725;
+  border-left: 6px solid var(--teal-primary);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  padding: 2.75rem 2.5rem;
+  cursor: default;
+}
+
+.meio-meio-card-bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/wood-oven-fire.png');
+  background-size: cover;
+  background-position: center right;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.meio-meio-featured-card:hover .meio-meio-card-bg-layer {
+  transform: scale(1.05);
+}
+
+.meio-meio-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(20, 17, 16, 0.96) 0%, rgba(20, 17, 16, 0.9) 55%, rgba(20, 17, 16, 0.45) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.meio-meio-card-content {
+  position: relative;
+  z-index: 3;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.meio-meio-card-tag {
+  font-family: var(--font-condensed);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--teal-primary);
+  text-transform: uppercase;
+}
+
+.meio-meio-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  color: var(--color-white-pure);
+  line-height: 1.05;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.meio-meio-card-desc {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.btn-meio-meio-action {
+  align-self: flex-start;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.3rem;
+}
+
+.meio-meio-featured-card:hover .btn-meio-meio-action {
+  background-color: var(--teal-hover);
+}
+
+/* ==========================================================================
+   5. FOOD CARD
+   Directive 3: Altura reduzida (520px) para caber abaixo do menu de filtro
+   Directive 5: #0C9C8E sem borda aparente
+   Directive 9: Fica parado no hover, imagem interna dá zoom, botão escurece (#097268)
+   Directive 12: Sem bordas claras, apenas bordas escuras
+   ========================================================================== */
+.products-listing-section {
+  width: 100%;
+  padding: 50px 0 140px;
+  position: relative;
+  z-index: 2;
+}
+
+.products-grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 1300px) {
+  .products-grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .products-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .products-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tripletta-card,
+.food-card {
+  min-height: 480px;
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--teal-accent); /* Visível e nítido desde já, idêntico à Home */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  cursor: default;
+  transition: border-color 0.25s ease;
+}
+
+.tripletta-card:hover,
+.food-card:hover {
+  transform: none !important;
+  border-color: var(--teal-light);
+  box-shadow: none !important;
+}
+
+/* 1. Header superior do Card (Estilo Imagem 1 Tripletta: Título no topo) */
+.tripletta-card-header {
+  padding: 1.25rem 1.15rem;
+  background-color: var(--bg-card);
+  border-bottom: 1.5px solid var(--teal-accent); /* Divisória nítida */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 76px;
+}
+
+.tripletta-card-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 1.8vw, 1.9rem);
+  line-height: 1.1;
+  color: var(--color-white-pure);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* 2. Área central de Mídia / Foto (Estilo Imagem 1: Foto retangular no meio) */
+.tripletta-card-media {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  background-color: #0c0908;
+}
+
+.tripletta-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.tripletta-card:hover .tripletta-card-img,
+.food-card:hover .tripletta-card-img {
+  transform: scale(1.08); /* Zoom sutil e elegante na foto */
+}
+
+/* Botão PEDIR flutuante no canto inferior direito da foto (Estilo Imagem 1: "Voir produit") */
+.btn-tripletta-order,
+.btn-card-order {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: var(--teal-primary);
+  border: none !important;
+  color: var(--color-white-pure);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.75rem 1.65rem;
+  cursor: default;
+  transition: background-color 0.2s ease;
+  z-index: 3;
+}
+
+.tripletta-card:hover .btn-tripletta-order,
+.tripletta-card:hover .btn-card-order,
+.btn-tripletta-order:hover,
+.btn-card-order:hover {
+  background-color: var(--teal-hover);
+  color: var(--color-white-pure);
+}
+
+/* 3. Rodapé do Card: Preço em destaque e Descrição em itálico serif (Estilo Imagem 1) */
+.tripletta-card-footer {
+  padding: 1.25rem 1.35rem 1.45rem;
+  background-color: var(--bg-card);
+  border-top: 1.5px solid var(--teal-accent); /* Divisória nítida */
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.tripletta-card-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tripletta-card-price {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  color: var(--teal-light);
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.tripletta-card-badge {
+  font-family: var(--font-condensed);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--teal-primary);
+  text-transform: uppercase;
+}
+
+.tripletta-card-desc {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* Empty Catalog Feedback */
+.empty-cardapio-box {
+  grid-column: 1 / -1;
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 1px solid var(--teal-accent);
+  background-color: var(--bg-card);
+}
+
+.empty-cardapio-title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.empty-cardapio-desc {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+
+/* Category header dividers when in 'todos' (SEM LINHA EM FORMATO DE BOX) */
+.category-header-divider {
+  grid-column: 1 / -1;
+  margin-top: 4.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.category-header-divider:first-child {
+  margin-top: 0;
+}
+
+.category-header-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  color: var(--color-white-pure);
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+
+.category-header-count {
+  font-family: var(--font-condensed);
+  font-size: 1.15rem;
+  color: var(--teal-accent);
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   6. CART SIDEBAR DRAWER (SOLID, ZERO AI GLASSMORPHISM)
+   ========================================================================== */
+.cart-backdrop-dim {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cart-backdrop-dim.active,
+.cart-backdrop-dim.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-sidebar-drawer {
+  position: fixed;
+  top: 0;
+  right: -520px;
+  width: 500px;
+  max-width: 95vw;
+  height: 100vh;
+  background-color: var(--bg-dark);
+  border-left: 2px solid var(--teal-accent);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cart-sidebar-drawer.active,
+.cart-sidebar-drawer.open {
+  right: 0;
+}
+
+.cart-sidebar-header {
+  padding: 1.5rem 2rem;
+  background-color: var(--bg-hero);
+  border-bottom: 1px solid var(--teal-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-sidebar-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: var(--color-white);
+}
+
+.cart-sidebar-close {
+  color: var(--color-white);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: default;
+}
+
+.cart-free-delivery-banner {
+  background-color: #0b5951;
+  color: var(--teal-light);
+  font-family: var(--font-condensed);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-align: center;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--teal-border);
+}
+
+.cart-items-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cart-item-card {
+  border: 1px solid var(--teal-border);
+  background-color: var(--bg-card);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cart-item-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.cart-item-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.cart-item-remove-btn {
+  color: var(--color-subtle);
+  font-size: 1.1rem;
+  cursor: default;
+}
+
+.cart-item-remove-btn:hover {
+  color: #ff5e5e;
+}
+
+.cart-item-details {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.cart-item-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(20, 175, 157, 0.2);
+  padding-top: 0.75rem;
+}
+
+.cart-item-price {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--teal-light);
+}
+
+.cart-item-qty-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--teal-border);
+}
+
+.cart-qty-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--color-white);
+  background-color: var(--bg-hero);
+  cursor: default;
+}
+
+.cart-qty-btn:hover {
+  background-color: var(--teal-primary);
+}
+
+.cart-qty-value {
+  width: 36px;
+  text-align: center;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.cart-sidebar-footer {
+  padding: 1.75rem 2rem;
+  background-color: var(--bg-hero);
+  border-top: 2px solid var(--teal-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.cart-finance-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-condensed);
+  font-size: 1.15rem;
+  color: var(--color-muted);
+  letter-spacing: 1px;
+}
+
+.cart-finance-row.total-bold {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--color-white-pure);
+  border-top: 1px solid var(--teal-border);
+  padding-top: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.total-highlight {
+  color: var(--teal-light);
+}
+
+.btn-cart-checkout {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 1.25rem;
+  font-size: 1.45rem;
+}
+
+/* ==========================================================================
+   7. MODALS (SOLID SHARP NEO-BRUTALIST WINDOWS)
+   Directive 11: Scroll lock do body e scroll interno exclusivo dos modais
+   ========================================================================== */
+body.modal-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+  touch-action: none;
+}
+
+.modal-dim-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.88);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  overscroll-behavior: contain;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-dim-overlay.active,
+.modal-dim-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-sharp-window {
+  width: 640px;
+  max-width: 100%;
+  max-height: 90vh;
+  background-color: var(--bg-dark);
+  border: 2px solid var(--teal-border-dark);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1001;
+  overscroll-behavior: contain;
+}
+
+.modal-sharp-header {
+  padding: 1.5rem 2rem;
+  background-color: var(--bg-hero);
+  border-bottom: 2px solid var(--teal-border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-sharp-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  color: var(--color-white);
+  letter-spacing: 1px;
+}
+
+.modal-sharp-close {
+  font-size: 1.75rem;
+  color: var(--color-white);
+  cursor: default;
+}
+
+.modal-sharp-body {
+  padding: 2rem;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.cart-items-scrollable,
+.flavor-picker-scroll {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.modal-option-label {
+  font-family: var(--font-condensed);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--teal-primary);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.options-sharp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Directive 8: Zero glassmorphism, sem preenchimento translúcido com borda neon */
+.option-sharp-card {
+  border: 1px solid #282120;
+  background-color: #171312; /* Sólido rústico */
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: default;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.option-sharp-card:hover {
+  background-color: #231c1b;
+}
+
+.option-sharp-card.selected {
+  background-color: var(--teal-primary); /* #0C9C8E */
+  border: none;
+  color: var(--color-white-pure);
+}
+
+.option-sharp-card.selected:hover {
+  background-color: var(--teal-hover); /* #097268 */
+}
+
+.option-sharp-card.selected .option-sharp-name,
+.option-sharp-card.selected .option-sharp-price,
+.option-sharp-card.selected .opt-name,
+.option-sharp-card.selected .opt-desc,
+.option-sharp-card.selected .opt-price {
+  color: var(--color-white-pure) !important;
+}
+
+.opt-name {
+  font-family: var(--font-condensed);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-white);
+}
+
+.opt-desc {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--color-muted);
+}
+
+.opt-price {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--teal-light);
+}
+
+.sharp-input,
+.sharp-select,
+.sharp-textarea {
+  width: 100%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--teal-border);
+  color: var(--color-white);
+  font-family: var(--font-condensed);
+  font-size: 1.1rem;
+  padding: 0.85rem 1rem;
+  outline: none;
+}
+
+.sharp-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.modal-sharp-footer {
+  padding: 1.5rem 2rem;
+  background-color: var(--bg-hero);
+  border-top: 2px solid var(--teal-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.qty-control-sharp {
+  display: flex;
+  border: 1px solid var(--teal-border);
+}
+
+.qty-sharp-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--color-white);
+  background-color: var(--bg-card);
+  cursor: default;
+}
+
+.qty-sharp-btn:hover {
+  background-color: var(--teal-primary);
+}
+
+.qty-sharp-value {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-white);
+}
+
+/* Meio a Meio Slots */
+.meio-meio-modal-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.slot-sharp-box {
+  border: 1px solid var(--teal-border);
+  background-color: var(--bg-card);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.slot-sharp-label {
+  font-family: var(--font-condensed);
+  font-size: 0.9rem;
+  color: var(--teal-accent);
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.slot-sharp-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.slot-sharp-price {
+  font-family: var(--font-condensed);
+  font-size: 1rem;
+  color: var(--teal-light);
+  margin-bottom: 0.75rem;
+}
+
+.flavor-picker-scroll {
+  max-height: 160px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.flavor-picker-item {
+  border: 1px solid rgba(20, 175, 157, 0.25);
+  background-color: var(--bg-hero);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-condensed);
+  font-size: 1.05rem;
+  cursor: default;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flavor-picker-item:hover,
+.flavor-picker-item.selected {
+  background-color: var(--teal-primary);
+  color: var(--color-white);
+}
+
+/* Checkout Tabs & Payment */
+.checkout-tabs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--teal-border-dark);
+}
+
+.checkout-tab-btn {
+  padding: 1rem;
+  background-color: var(--bg-card);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  cursor: default;
+  text-align: center;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.checkout-tab-btn.active {
+  background-color: var(--teal-primary); /* #0C9C8E */
+}
+
+.checkout-tab-btn:hover {
+  background-color: var(--teal-hover); /* #097268 */
+}
+
+.payment-grid-sharp {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.payment-sharp-card {
+  border: 1px solid #282120;
+  background-color: #171312; /* Sólido rústico */
+  padding: 1rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  cursor: default;
+  transition: background-color 0.2s ease;
+}
+
+.payment-sharp-card:hover {
+  background-color: #231c1b;
+}
+
+.payment-sharp-card.selected {
+  background-color: var(--teal-primary); /* #0C9C8E */
+  border: none;
+  color: var(--color-white-pure);
+}
+
+.payment-sharp-card.selected:hover {
+  background-color: var(--teal-hover); /* #097268 */
+}
+
+.checkout-sharp-summary {
+  border: 1px solid var(--teal-border);
+  background-color: var(--bg-card);
+  padding: 1.25rem;
+}
+
+.summary-sharp-title {
+  font-family: var(--font-condensed);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--teal-accent);
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   8. FOOTER (TRIPLETTA NEO-BRUTALIST MINIMALIST)
+   Directive 3 & 8: Idêntico à Home e Restaurante
+   ========================================================================== */
+.site-footer {
+  width: 100%;
+  background-color: var(--teal-primary); /* Fundo azul/teal vibrante como antes */
+  border-top: 3px solid var(--teal-border);
+  padding: 85px 5vw 45px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Giant Watermark Script "Bingen" in background with mix-blend */
+.footer-script-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1520px;
+  opacity: 0.65;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footer-script-watermark img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-tripletta-container {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+}
+
+/* 1. Linha Superior de Links Minimalistas com Chevron */
+.footer-nav-links-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.footer-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-condensed);
+  font-size: clamp(15px, 1.3vw, 19px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-white-pure);
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-nav-item:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+.footer-nav-item .nav-chevron {
+  color: var(--teal-light);
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* 2. Titular Neo-Brutalista Monumental Edge-to-Edge */
+.footer-monumental-brand {
+  padding: 55px 0 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.footer-huge-title {
+  font-family: var(--font-display);
+  font-size: clamp(6.5rem, 17vw, 20rem);
+  line-height: 0.82;
+  letter-spacing: clamp(4px, 1.4vw, 14px);
+  text-transform: uppercase;
+  color: var(--color-white-pure); /* Branco puro sobre o fundo azul teal */
+  margin: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-shadow: none !important;
+}
+
+.footer-huge-sub {
+  font-family: var(--font-condensed);
+  font-size: clamp(26px, 4.2vw, 60px);
+  font-weight: 700;
+  letter-spacing: clamp(8px, 2.2vw, 24px);
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-top: 10px;
+}
+
+/* 3. Linha Inferior de Créditos e Contato */
+.footer-bottom-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-meta-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-meta-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-meta-right a {
+  color: var(--color-white-pure);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.footer-meta-right a:hover {
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   RESPONSIVE MOBILE STYLES (TRIPLETTA SYSTEM <= 768px & <= 480px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  /* 1. Header & Botão Voltar */
+  .subpage-header {
+    padding: 1.25rem 16px;
+  }
+
+  .btn-back-clean {
+    font-size: 1.05rem;
+    gap: 6px;
+  }
+
+  /* 2. Hero Section (95% da Altura da Viewport) */
+  .hero-photo-top {
+    height: 95vh;
+    min-height: 95vh;
+  }
+
+  /* 3. Solid Teal Banner */
+  .cardapio-teal-banner {
+    padding: 2.5rem 16px;
+  }
+
+  .cardapio-banner-title {
+    font-size: clamp(1.75rem, 7.5vw, 2.8rem);
+    line-height: 1.05;
+  }
+
+  /* 4. Search Bar & Cart (Carrinho Acima da Pesquisa) */
+  .search-bar-fullwidth {
+    padding: 0.85rem 16px 0.65rem;
+  }
+
+  .search-cart-container,
+  .search-cart-row {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .cart-top-bar {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .search-bar-inner {
+    width: 100%;
+  }
+
+  .search-field-input {
+    font-size: 16px; /* Evita auto-zoom do iOS */
+    padding: 0.75rem 1rem;
+  }
+
+  .search-clear-btn {
+    padding: 0 1.15rem;
+    font-size: 0.9rem;
+  }
+
+  /* Botão do Carrinho Compacto e Elegante */
+  .header-cart-btn {
+    width: auto;
+    align-self: flex-end;
+    height: 38px;
+    padding: 0 14px;
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .cart-label {
+    font-size: 12.5px;
+    letter-spacing: 1px;
+  }
+
+  .cart-counter-box {
+    padding: 2px 7px;
+    font-size: 12px;
+  }
+
+  .cart-price-box {
+    font-size: 14.5px;
+  }
+
+  /* 5. Fullscreen Category Filters (Scroll Horizontal Touch) */
+  .category-nav-tabs-fullscreen {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+  }
+
+  .category-tab-btn {
+    flex: 0 0 auto;
+    min-height: 48px;
+    padding: 0 1.15rem;
+    gap: 6px;
+  }
+
+  .tab-btn-text {
+    font-size: 1.05rem;
+  }
+
+  .tab-chevron {
+    width: 12px;
+  }
+
+  /* 6. Card Destacado: Pizza Meio a Meio */
+  .meio-meio-featured-card {
+    padding: 1.5rem 1.15rem;
+    margin-bottom: 1.75rem;
+    border-left-width: 5px;
+  }
+
+  .meio-meio-card-title {
+    font-size: clamp(1.7rem, 7vw, 2.4rem);
+  }
+
+  .meio-meio-card-desc {
+    font-size: 0.95rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .btn-meio-meio-action {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.05rem;
+    padding: 0.8rem 1rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* 7. Grid de Produtos (2 Colunas no Mobile) */
+  .products-listing-section {
+    padding: 15px 0 50px;
+  }
+
+  .section-container {
+    padding: 0 10px;
+  }
+
+  .products-grid-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+
+  .tripletta-card,
+  .food-card {
+    min-height: auto;
+    width: 100%;
+    border: 1.5px solid var(--teal-accent);
+  }
+
+  .tripletta-card-header {
+    padding: 0.55rem 0.45rem;
+    min-height: 44px;
+    border-bottom: 1.5px solid var(--teal-accent);
+  }
+
+  .tripletta-card-name {
+    font-size: clamp(0.92rem, 3.4vw, 1.2rem);
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .tripletta-card-media {
+    height: clamp(110px, 28vw, 135px);
+  }
+
+  .btn-tripletta-order,
+  .btn-card-order {
+    padding: 0.38rem 0.7rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.8px;
+  }
+
+  .tripletta-card-footer {
+    padding: 0.55rem 0.5rem 0.7rem;
+    border-top: 1.5px solid var(--teal-accent);
+    gap: 0.25rem;
+  }
+
+  .tripletta-card-price {
+    font-size: clamp(1.05rem, 3.6vw, 1.3rem);
+  }
+
+  .tripletta-card-badge {
+    font-size: 0.68rem;
+    letter-spacing: 0.8px;
+  }
+
+  .tripletta-card-desc {
+    font-size: 0.78rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .category-header-divider {
+    margin-top: 1.8rem;
+    margin-bottom: 0.75rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .category-header-title {
+    font-size: 1.65rem;
+  }
+
+  .category-header-count {
+    font-size: 0.9rem;
+  }
+
+  /* 8. Cart Sidebar Drawer Full-Width */
+  .cart-sidebar-drawer {
+    width: 100vw;
+    max-width: 100vw;
+    right: -100vw;
+    height: 100vh;
+  }
+
+  .cart-sidebar-header {
+    padding: 1.15rem 1.25rem;
+  }
+
+  .cart-sidebar-title {
+    font-size: 1.6rem;
+  }
+
+  .cart-sidebar-close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+
+  .cart-free-delivery-banner {
+    font-size: 0.92rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .cart-items-scrollable {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .cart-item-card {
+    padding: 1rem;
+  }
+
+  .cart-sidebar-footer {
+    padding: 1.15rem 1.25rem 1.5rem;
+    gap: 0.55rem;
+  }
+
+  .cart-finance-row.total-bold {
+    font-size: 1.7rem;
+  }
+
+  .btn-cart-checkout {
+    padding: 1.1rem;
+    font-size: 1.25rem;
+  }
+
+  /* 9. Modals (Customização, Meio a Meio, Checkout) */
+  .modal-dim-overlay {
+    padding: 10px;
+    align-items: flex-end;
+  }
+
+  .modal-sharp-window {
+    width: 100%;
+    max-height: 92vh;
+    border-width: 1.5px;
+  }
+
+  .modal-sharp-header {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .modal-sharp-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-sharp-body {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  #modal-product-name {
+    font-size: 1.6rem !important;
+  }
+
+  #modal-product-desc {
+    font-size: 1rem !important;
+  }
+
+  .option-sharp-card {
+    padding: 0.85rem 1rem;
+  }
+
+  .opt-name {
+    font-size: 1.05rem;
+  }
+
+  .opt-price {
+    font-size: 1.15rem;
+  }
+
+  .modal-sharp-footer {
+    padding: 1rem 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  #btn-modal-add-to-cart {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.9rem;
+  }
+
+  /* Meio a Meio Modal Slots no Mobile */
+  .meio-meio-modal-slots {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .slot-sharp-box {
+    padding: 0.85rem;
+  }
+
+  .flavor-picker-scroll {
+    max-height: 140px;
+  }
+
+  #btn-meio-meio-add-to-cart {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 0.9rem;
+  }
+
+  /* Checkout Modal Fields no Mobile */
+  .checkout-tabs-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .checkout-tab-btn {
+    padding: 0.85rem;
+    font-size: 1.1rem;
+  }
+
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns: 2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .payment-grid-sharp {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .payment-sharp-card {
+    padding: 0.85rem;
+    font-size: 1.05rem;
+  }
+
+  #btn-dispatch-whatsapp {
+    padding: 1.1rem;
+    font-size: 1.25rem;
+  }
+
+  /* 10. Footer Tripletta no Mobile (Idêntico à Home) */
+  .site-footer {
+    padding: 60px 16px 35px;
+  }
+
+  .footer-nav-links-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 25px;
+  }
+
+  .footer-nav-item {
+    font-size: 17px;
+  }
+
+  .footer-monumental-brand {
+    padding: 35px 0 30px;
+  }
+
+  .footer-huge-title {
+    font-size: clamp(4.2rem, 16.5vw, 7.8rem);
+    letter-spacing: 3px;
+  }
+
+  .footer-huge-sub {
+    font-size: clamp(18px, 5.5vw, 28px);
+    letter-spacing: clamp(4px, 1.5vw, 10px);
+    margin-top: 8px;
+  }
+
+  .footer-bottom-meta-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    padding-top: 20px;
+  }
+
+  .footer-meta-left,
+  .footer-meta-right {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .subpage-header {
+    padding: 1rem 14px;
+  }
+
+  .hero-photo-top {
+    height: 95vh;
+    min-height: 95vh;
+  }
+
+  .search-bar-fullwidth {
+    padding: 0.85rem 14px 0.5rem;
+  }
+
+  .section-container {
+    padding: 0 14px;
+  }
+
+  .tripletta-card-media {
+    height: 195px;
+  }
+
+  .btn-tripletta-order,
+  .btn-card-order {
+    padding: 0.65rem 1.2rem;
+    font-size: 1.05rem;
+  }
+
+  .site-footer {
+    padding: 50px 14px 30px;
+  }
+}
+
+/* ==========================================================================
+   CUSTOM INTERACTIVE CURSOR (BOLINHA ÚNICA)
+   - Bolinha única que segue o ponteiro (sem bola grande duplicada ou neon)
+   - Em repouso: bolinha pequena sólida teal (10px) centralizada no mouse
+   - No hover: a própria bolinha pequena se expande para 78px exibindo a ação
+   - Zero neon / zero glow
+   ========================================================================== */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50% !important;
+  background-color: var(--teal-primary);
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease,
+              background-color 0.2s ease;
+}
+
+.custom-cursor .cursor-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  line-height: 1.05;
+  pointer-events: none;
+}
+
+.custom-cursor .cursor-action-text {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.custom-cursor .cursor-action-chevron {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 0.8;
+  margin-top: 2px;
+}
+
+/* Quando expande no hover */
+.custom-cursor.cursor-expanded {
+  width: 86px;
+  height: 86px;
+  background-color: var(--teal-primary);
+  box-shadow: none !important;
+}
+
+.custom-cursor.cursor-expanded .cursor-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Efeito tátil de clique */
+.custom-cursor.cursor-pressed {
+  transform: translate3d(-50%, -50%, 0) scale(0.9);
+}
+
+/* Desativação em telas touch */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* Directive: Preservar o cursor de seta normal em todo o site, mas NUNCA exibir a mãozinha (pointer) em hover */
+* {
+  cursor: default;
+}
+input:not([type="button"]):not([type="submit"]):not([type="reset"]), textarea {
+  cursor: text !important;
+}
+a, button, input[type="button"], input[type="submit"], [role="button"], label,
+.btn-solid-teal, .btn-back-clean, .combo-card, .food-card, .tripletta-card,
+.nav-tab-item, .faq-question-btn, .carousel-nav-btn, .indicator-dot,
+.strip-action-header, .strip-gray-panel, .floating-delivery-btn,
+.category-tab-btn, .header-cart-btn, .search-clear-btn, .meio-meio-featured-card,
+.footer-nav-item, .footer-meta-right a {
+  cursor: default !important;
+}

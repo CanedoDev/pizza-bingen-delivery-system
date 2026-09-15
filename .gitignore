@@ -1,0 +1,18 @@
+# Dependency & Cache
+node_modules/
+.agents/
+skills-lock.json
+SKILL*.md
+
+# Scratch & Temporary test scripts
+scratch/
+bingen-pizza-burger/
+
+# OS metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
