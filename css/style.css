@@ -298,7 +298,7 @@ button {
 /* Hero Centerpiece Pizza */
 .hero-pizza-wrapper {
   position: absolute;
-  top: calc(50% + 45px);
+  top: calc(50% + 75px);
   left: 50%;
   transform: translate(-50%, -50%);
   width: 920px;
@@ -316,7 +316,7 @@ button {
 /* Headline: PIZZA & BURGER with Capsule */
 .hero-headline-capsule {
   position: absolute;
-  top: 68%;
+  top: 73%;
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--bg-hero);
@@ -364,17 +364,6 @@ button {
   background: linear-gradient(90deg, rgba(20, 175, 157, 0.95) 0%, rgb(20, 175, 157) 40%, rgba(16, 152, 137, 0) 100%);
 }
 
-.hero-bottom-dot-left {
-  position: absolute;
-  left: 5vw;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background-color: var(--teal-primary);
-  pointer-events: none;
-  z-index: 10;
-}
-
 .hero-bottom-centerpiece {
   display: flex;
   flex-direction: column;
@@ -396,8 +385,8 @@ button {
 
 .oven-flame-emblem {
   position: relative;
-  width: 58px;
-  height: 46px;
+  width: 82px;
+  height: 62px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -411,10 +400,10 @@ button {
 
 .emblem-flame {
   position: absolute;
-  bottom: 3px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 24px;
+  width: 32px;
   height: auto;
   object-fit: contain;
 }
@@ -454,13 +443,13 @@ button {
   height: 18px;
 }
 
-/* Decorative Circles (Foguinhos aumentados e imponentes nas laterais da pizza, emoldurando a hero) */
+/* Decorative Circles (Foguinhos ajustados: esquerdo menor, direito maior, posicionamento alinhado) */
 .hero-deco-left {
   position: absolute;
-  top: calc(50% + 20px);
+  top: calc(50% + 65px);
   transform: translateY(-50%);
-  left: calc(50% - clamp(480px, 43vw, 620px));
-  width: clamp(230px, 21vw, 330px);
+  left: calc(50% - clamp(460px, 41vw, 590px));
+  width: clamp(160px, 15vw, 220px);
   opacity: 0.95;
   z-index: 5;
   pointer-events: none;
@@ -474,10 +463,10 @@ button {
 
 .hero-deco-right {
   position: absolute;
-  top: calc(50% + 15px);
+  top: calc(50% + 60px);
   transform: translateY(-50%);
-  right: calc(50% - clamp(480px, 43vw, 620px));
-  width: clamp(230px, 21vw, 330px);
+  right: calc(50% - clamp(520px, 45vw, 660px));
+  width: clamp(280px, 26vw, 390px);
   opacity: 0.95;
   z-index: 5;
   pointer-events: none;
@@ -491,15 +480,6 @@ button {
 
 .hero-deco-right .stamp-overlay {
   display: none;
-}
-
-.hero-deco-glyph {
-  position: absolute;
-  top: 71%;
-  left: 6.5%;
-  width: 50px;
-  opacity: 0.5;
-  z-index: 2;
 }
 
 .hero-mobile-nav-links {
@@ -2083,44 +2063,44 @@ button {
   /* Logotipo Marca d'Água Centralizado */
   .hero-script-watermark {
     position: absolute;
-    top: 100px;
+    top: 85px;
     left: 50%;
     transform: translateX(-50%);
     width: 140%;
-    max-width: 460px;
-    opacity: 0.38;
+    max-width: 440px;
+    opacity: 0.75;
   }
 
-  /* Pizza Centralizada */
+  /* Pizza Centralizada - Abaixada em Y para dar leitura a 'Bingen' */
   .hero-pizza-wrapper {
     position: relative;
     transform: none;
     left: auto;
     top: auto;
-    margin: 12px auto 14px;
-    width: clamp(250px, 70vw, 310px);
+    margin: 54px auto 14px;
+    width: clamp(240px, 68vw, 295px);
     max-width: 80vw;
     z-index: 6;
   }
 
-  /* Foguinhos Laterais Grandes e Emoldurados sem Transbordar */
+  /* Foguinhos Laterais: Esquerdo menor, Direito maior, alinhados com a pizza */
   .hero-deco-left {
     display: block;
     position: absolute;
-    top: 220px;
-    left: clamp(2px, calc(50% - 185px), 25px);
+    top: 270px;
+    left: clamp(2px, calc(50% - 170px), 16px);
     transform: translateY(-50%);
-    width: clamp(80px, 22vw, 105px);
+    width: clamp(55px, 15vw, 70px);
     z-index: 5;
   }
 
   .hero-deco-right {
     display: block;
     position: absolute;
-    top: 220px;
-    right: clamp(2px, calc(50% - 185px), 25px);
+    top: 270px;
+    right: clamp(2px, calc(50% - 185px), 20px);
     transform: translateY(-50%);
-    width: clamp(80px, 22vw, 105px);
+    width: clamp(100px, 27vw, 130px);
     z-index: 5;
   }
 
@@ -2128,7 +2108,7 @@ button {
   .hero-headline-capsule {
     position: static;
     transform: none;
-    margin: 6px auto 16px;
+    margin: 8px auto 16px;
     padding: 0.2rem 1.4rem;
     background-color: var(--bg-hero);
     z-index: 8;
@@ -2138,7 +2118,7 @@ button {
     font-size: clamp(2.4rem, 10vw, 3.4rem);
   }
 
-  /* Barra Inferior com Forno e Redes Sociais Centralizados (Ponto 5 ampliado) */
+  /* Barra Inferior com Forno e Redes Sociais Centralizados */
   .hero-bottom-bar {
     position: static;
     margin-top: 14px;
@@ -2150,7 +2130,7 @@ button {
     z-index: 10;
   }
 
-  .hero-divider-line, .hero-bottom-dot-left {
+  .hero-divider-line {
     display: none;
   }
 
@@ -2169,30 +2149,31 @@ button {
   }
 
   .oven-flame-emblem {
-    width: 56px;
-    height: 44px;
+    width: 76px;
+    height: 58px;
   }
 
   .emblem-flame {
-    width: 22px;
+    width: 30px;
+    bottom: 4px;
   }
 
   .hero-social-links {
     position: static;
     display: flex;
     justify-content: center;
-    gap: 16px;
-    margin-top: 2px;
+    gap: 10px;
+    margin-top: 4px;
   }
 
   .social-circle-btn {
-    width: 42px;
-    height: 42px;
+    width: 32px;
+    height: 32px;
   }
 
   .social-circle-btn svg {
-    width: 21px;
-    height: 21px;
+    width: 15px;
+    height: 15px;
   }
 
   /* 2. Tabs de Navegação Inicial - CARDS MAIS ALTOS (Tripletta) */
