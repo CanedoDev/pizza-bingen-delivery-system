@@ -11,9 +11,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;500;600;700&family=Bree+Serif&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   
+  <!-- Preload Critical Above-The-Fold Assets -->
+  <link rel="preload" href="assets/images/hero-pizza.png" as="image">
+  <link rel="preload" href="assets/images/wood-oven-fire.png" as="image">
+  <link rel="preload" href="assets/images/hero-bg-image19.png" as="image">
+  <link rel="preload" href="assets/images/bingen-script-logo.png" as="image">
+  
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/preloader.css">
+  <script src="js/preloader.js" defer></script>
 </head>
 <body>
+
+  <!-- Real 0-100% Preloader Overlay -->
+  <div id="site-preloader" class="site-preloader" aria-label="Carregando o site" role="status">
+    <div class="preloader-content">
+      <div class="preloader-brand">
+        <div class="preloader-flame-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="#E85D04" stroke="#FFBA08"/>
+          </svg>
+        </div>
+        <span class="preloader-logo-title">BINGEN</span>
+        <span class="preloader-logo-tagline">PIZZA &amp; BURGER &bull; FORNO A LENHA</span>
+      </div>
+      
+      <div class="preloader-counter-wrap">
+        <span class="preloader-counter-val" id="preloader-counter">0</span>
+        <span class="preloader-counter-pct">%</span>
+      </div>
+      
+      <div class="preloader-bar-track">
+        <div class="preloader-bar-fill" id="preloader-fill"></div>
+      </div>
+      
+      <div class="preloader-status-text" id="preloader-status">Aquecendo o forno a lenha...</div>
+    </div>
+  </div>
 
   <!-- Full-Width Background Texture (Repeats downwards, 15% opacity, lowest z-index) -->
   <div class="bg-texture-layer" aria-hidden="true"></div>

@@ -1,0 +1,169 @@
+/* ==========================================================================
+   BINGEN PIZZA & BURGER - SITE PRELOADER (0-100% REAL LOADER)
+   Aesthetic: Dark wood-oven & fire atmosphere with amber glow
+   Layout invariant: Fixed overlay, never affects page document flow
+   ========================================================================== */
+
+body.preloader-locked {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+.site-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999999;
+  background-color: #0e0b0b;
+  background-image: 
+    radial-gradient(circle at 50% 46%, rgba(232, 93, 4, 0.15) 0%, rgba(20, 16, 15, 0.95) 55%, #0e0b0b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #ffffff;
+  pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), 
+              visibility 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.site-preloader.preloader-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(1.02);
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  max-width: 360px;
+  width: 90%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Flame & Brand Emblem */
+.preloader-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.preloader-flame-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 93, 4, 0.25) 0%, rgba(255, 186, 8, 0.05) 70%, transparent 100%);
+  margin-bottom: 4px;
+  animation: preloaderFlamePulse 2s ease-in-out infinite;
+}
+
+@keyframes preloaderFlamePulse {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    filter: drop-shadow(0 0 12px rgba(232, 93, 4, 0.65));
+  }
+  50% {
+    transform: scale(1.09) translateY(-2px);
+    filter: drop-shadow(0 0 24px rgba(255, 186, 8, 0.95));
+  }
+}
+
+.preloader-logo-title {
+  font-family: 'Anton', 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+}
+
+.preloader-logo-tagline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #8FDDD5; /* Brand teal accent */
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* Numeric Counter */
+.preloader-counter-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.preloader-counter-val {
+  font-family: 'Anton', 'Barlow Condensed', sans-serif;
+  font-size: 54px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(232, 93, 4, 0.35);
+  font-variant-numeric: tabular-nums;
+  min-width: 72px;
+  text-align: right;
+}
+
+.preloader-counter-pct {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #E85D04;
+  margin-left: 2px;
+}
+
+/* Progress Track & Fill */
+.preloader-bar-track {
+  width: 100%;
+  max-width: 240px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  margin-bottom: 14px;
+}
+
+.preloader-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #c44510 0%, #E85D04 60%, #FFBA08 100%);
+  border-radius: 99px;
+  box-shadow: 0 0 12px rgba(232, 93, 4, 0.8), 0 0 20px rgba(255, 186, 8, 0.4);
+  transition: width 0.1s linear;
+}
+
+/* Dynamic Status Label */
+.preloader-status-text {
+  font-family: 'Barlow Condensed', 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  min-height: 18px;
+  transition: opacity 0.25s ease;
+}
