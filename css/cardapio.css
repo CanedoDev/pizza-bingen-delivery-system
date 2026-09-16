@@ -19,6 +19,7 @@
   --teal-border-dark: #084c45;
   --teal-cta: #0C9C8E;
   --teal-light: #8fddd5;
+  --teal-ice: #c0f4ec; /* Versão mais clara e luminosa para títulos principais, sem ser branco */
   --teal-glow: #0C9C8E;
   --teal-gradient-start: rgba(12, 156, 142, 0);
   --teal-gradient-mid: rgb(12, 156, 142);
@@ -122,7 +123,7 @@ button {
   justify-content: center;
   background-color: var(--teal-primary);
   border: none !important;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   font-family: var(--font-display);
   font-size: 1.35rem;
   letter-spacing: 1px;
@@ -145,7 +146,7 @@ button {
   justify-content: center;
   background-color: var(--teal-primary);
   border: none !important;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   font-family: var(--font-display);
   font-size: 1.15rem;
   letter-spacing: 1.5px;
@@ -309,29 +310,35 @@ main {
   background-color: var(--teal-primary);
   border-top: 2px solid var(--teal-border);
   border-bottom: 2px solid var(--teal-border);
-  padding: 3.5rem var(--gutter);
+  padding: 3.5rem 0;
   text-align: center;
   position: relative;
   z-index: 5;
+  overflow: hidden;
 }
 
 .cardapio-banner-container {
-  max-width: var(--max-content-width);
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  padding: 0;
 }
 
 .cardapio-banner-title {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6.5vw, 6.2rem);
-  line-height: 0.95;
-  letter-spacing: clamp(1.5px, 0.4vw, 3.5px);
-  color: var(--color-white-pure);
+  font-size: clamp(2.7rem, 8.65vw, 18.7rem);
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+  color: var(--teal-ice);
   text-transform: uppercase;
   margin: 0;
+  white-space: nowrap;
+  max-width: 100%;
+  padding: 0 2px;
 }
 
 .cardapio-banner-subtitle {
@@ -413,7 +420,7 @@ main {
 
 .search-clear-btn:hover {
   background-color: var(--teal-hover);
-  color: #ffffff;
+  color: var(--teal-light);
 }
 
 /* Botão do Carrinho na Mesma Linha da Barra de Pesquisa (Zero Bordas Finas) */
@@ -438,7 +445,7 @@ main {
 
 .header-cart-btn:hover {
   background-color: var(--teal-hover);
-  color: #ffffff;
+  color: var(--teal-light);
 }
 
 .cart-label {
@@ -447,7 +454,7 @@ main {
 
 .cart-counter-box {
   background-color: rgba(6, 24, 21, 0.28);
-  color: #ffffff;
+  color: var(--teal-light);
   padding: 3px 8px;
   border: none !important;
   font-family: var(--font-condensed);
@@ -503,7 +510,7 @@ main {
   gap: 0.55rem;
   cursor: default;
   transition: background-color 0.2s ease;
-  color: var(--color-white);
+  color: var(--teal-light);
   white-space: nowrap;
 }
 
@@ -724,7 +731,7 @@ main {
   bottom: 0;
   background-color: var(--teal-primary);
   border: none !important;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   font-family: var(--font-display);
   font-size: 1.25rem;
   letter-spacing: 1.5px;
@@ -740,7 +747,7 @@ main {
 .btn-tripletta-order:hover,
 .btn-card-order:hover {
   background-color: var(--teal-hover);
-  color: var(--color-white-pure);
+  color: var(--teal-light);
 }
 
 /* 3. Rodapé do Card: Preço em destaque e Descrição em itálico serif (Estilo Imagem 1) */
@@ -1165,7 +1172,7 @@ body.modal-open {
 .option-sharp-card.selected {
   background-color: var(--teal-primary); /* #0C9C8E */
   border: none;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
 }
 
 .option-sharp-card.selected:hover {
@@ -1177,7 +1184,7 @@ body.modal-open {
 .option-sharp-card.selected .opt-name,
 .option-sharp-card.selected .opt-desc,
 .option-sharp-card.selected .opt-price {
-  color: var(--color-white-pure) !important;
+  color: var(--teal-light) !important;
 }
 
 .opt-name {
@@ -1320,7 +1327,7 @@ body.modal-open {
 .flavor-picker-item:hover,
 .flavor-picker-item.selected {
   background-color: var(--teal-primary);
-  color: var(--color-white);
+  color: var(--teal-light);
 }
 
 /* Checkout Tabs & Payment */
@@ -1346,6 +1353,7 @@ body.modal-open {
 
 .checkout-tab-btn.active {
   background-color: var(--teal-primary); /* #0C9C8E */
+  color: var(--teal-light);
 }
 
 .checkout-tab-btn:hover {
@@ -1377,7 +1385,7 @@ body.modal-open {
 .payment-sharp-card.selected {
   background-color: var(--teal-primary); /* #0C9C8E */
   border: none;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
 }
 
 .payment-sharp-card.selected:hover {
@@ -1466,7 +1474,7 @@ body.modal-open {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   text-decoration: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -1499,7 +1507,7 @@ body.modal-open {
   line-height: 0.82;
   letter-spacing: clamp(4px, 1.4vw, 14px);
   text-transform: uppercase;
-  color: var(--color-white-pure); /* Branco puro sobre o fundo azul teal */
+  color: var(--teal-ice); /* #c0f4ec sobre o fundo azul teal */
   margin: 0;
   white-space: nowrap;
   pointer-events: none;
@@ -1513,7 +1521,7 @@ body.modal-open {
   font-weight: 700;
   letter-spacing: clamp(8px, 2.2vw, 24px);
   text-transform: uppercase;
-  color: var(--teal-light);
+  color: var(--teal-ice);
   margin-top: 10px;
 }
 
@@ -1528,7 +1536,7 @@ body.modal-open {
   border-top: 1px solid rgba(255, 255, 255, 0.22);
   font-family: var(--font-sans);
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--teal-light);
 }
 
 .footer-meta-left {
@@ -1546,7 +1554,7 @@ body.modal-open {
 }
 
 .footer-meta-right a {
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   text-decoration: none;
   font-weight: 600;
   transition: opacity 0.2s ease;
@@ -2064,7 +2072,7 @@ body.modal-open {
   font-family: var(--font-display);
   font-size: 13px;
   letter-spacing: 1.2px;
-  color: #ffffff;
+  color: var(--teal-light);
   text-transform: uppercase;
   line-height: 1;
 }
@@ -2073,7 +2081,7 @@ body.modal-open {
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--teal-light);
   line-height: 0.8;
   margin-top: 2px;
 }

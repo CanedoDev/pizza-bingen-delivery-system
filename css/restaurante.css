@@ -15,6 +15,7 @@
   --teal-hover: #097268;
   --teal-border: #0b5e55;
   --teal-light: #8fddd5;
+  --teal-ice: #c0f4ec; /* Versão mais clara e luminosa para títulos principais, sem ser branco */
   
   /* Typography Colors */
   --color-white: #efefef;
@@ -147,7 +148,7 @@ body {
   gap: 10px;
   padding: 12px 24px;
   background-color: var(--teal-primary);
-  color: #061815;
+  color: var(--teal-light);
   font-family: var(--font-condensed);
   font-size: 15px;
   font-weight: 700;
@@ -161,7 +162,7 @@ body {
 
 .btn-solid-teal:hover {
   background-color: var(--teal-hover);
-  color: #ffffff;
+  color: var(--teal-light);
 }
 
 .btn-solid-teal img {
@@ -180,7 +181,7 @@ body {
   gap: 10px;
   padding: 12px 26px;
   background-color: var(--teal-primary);
-  color: #061815;
+  color: var(--teal-light);
   font-family: var(--font-condensed);
   font-size: 15px;
   font-weight: 700;
@@ -194,7 +195,7 @@ body {
 
 .btn-header-action:hover {
   background-color: var(--teal-hover);
-  color: #ffffff;
+  color: var(--teal-light);
 }
 
 .btn-header-action img {
@@ -291,30 +292,41 @@ body {
   background-color: var(--teal-primary);
   border-top: 2px solid var(--teal-border);
   border-bottom: 2px solid var(--teal-border);
-  padding: 3.5rem var(--gutter);
+  padding: 3.5rem 0;
   text-align: center;
   position: relative;
   z-index: 3;
+  overflow: hidden;
 }
 
 .restaurante-banner-container {
-  max-width: var(--max-content-width);
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  padding: 0;
 }
 
 .restaurante-banner-title {
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 6.5vw, 6.2rem);
-  color: var(--color-white-pure);
-  line-height: 0.95;
-  letter-spacing: clamp(1.5px, 0.4vw, 3.5px);
+  font-size: clamp(2.4rem, 7.25vw, 17rem);
+  color: var(--teal-ice);
+  line-height: 0.9;
+  letter-spacing: -0.015em;
   text-transform: uppercase;
   margin: 0;
   text-align: center;
+  white-space: nowrap;
+  max-width: 100%;
+  padding: 0 2px;
+}
+
+#banner-restaurante .restaurante-banner-title {
+  font-size: clamp(3.6rem, 15.7vw, 25.5rem);
+  letter-spacing: 0;
 }
 
 .restaurante-banner-subtitle {
@@ -339,7 +351,7 @@ body {
 
 .solid-badge {
   background-color: var(--teal-primary);
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   font-family: var(--font-condensed);
   font-size: 13.5px;
   font-weight: 700;
@@ -1120,7 +1132,7 @@ body {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   text-decoration: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -1153,7 +1165,7 @@ body {
   line-height: 0.82;
   letter-spacing: clamp(4px, 1.4vw, 14px);
   text-transform: uppercase;
-  color: var(--color-white-pure); /* Branco puro sobre o fundo azul teal */
+  color: var(--teal-ice); /* #c0f4ec sobre o fundo azul teal */
   margin: 0;
   white-space: nowrap;
   pointer-events: none;
@@ -1167,7 +1179,7 @@ body {
   font-weight: 700;
   letter-spacing: clamp(8px, 2.2vw, 24px);
   text-transform: uppercase;
-  color: var(--teal-light);
+  color: var(--teal-ice);
   margin-top: 10px;
 }
 
@@ -1182,7 +1194,7 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.22);
   font-family: var(--font-sans);
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--teal-light);
 }
 
 .footer-meta-left {
@@ -1200,7 +1212,7 @@ body {
 }
 
 .footer-meta-right a {
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   text-decoration: none;
   font-weight: 600;
   transition: opacity 0.2s ease;
@@ -1297,7 +1309,7 @@ body {
   font-family: var(--font-display);
   font-size: 13px;
   letter-spacing: 1.2px;
-  color: #ffffff;
+  color: var(--teal-light);
   text-transform: uppercase;
   line-height: 1;
 }
@@ -1306,7 +1318,7 @@ body {
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--teal-light);
   line-height: 0.8;
   margin-top: 2px;
 }

@@ -19,6 +19,7 @@
   --teal-border: #0b5e55;
   --teal-cta: #0C9C8E;
   --teal-light: #8fddd5;
+  --teal-ice: #c0f4ec; /* Versão mais clara e luminosa para títulos principais e menu, sem ser branco */
   --teal-glow: #0C9C8E;
   --teal-gradient-start: rgba(12, 156, 142, 0);
   --teal-gradient-mid: rgb(12, 156, 142);
@@ -127,7 +128,7 @@ button {
   justify-content: center;
   background-color: var(--teal-primary);
   border: none;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   font-family: var(--font-display);
   font-size: 1.5rem;
   letter-spacing: 1px;
@@ -534,7 +535,7 @@ button {
 .tab-title {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 3.8vw, 4.6rem);
-  color: var(--color-offwhite);
+  color: var(--teal-ice);
   line-height: 1;
   letter-spacing: 1px;
 }
@@ -585,19 +586,20 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
+  padding: 0 10px;
   overflow: hidden;
 }
 
 .welcome-banner-title {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5.1vw, 5.6rem);
-  color: var(--teal-light);
-  line-height: 1;
+  font-size: clamp(2.7rem, 8.08vw, 18.7rem);
+  color: var(--teal-ice);
+  line-height: 0.9;
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: -0.015em;
   white-space: nowrap;
   max-width: 100%;
+  padding: 0 2px;
 }
 
 /* Chef Image Wrapper */
@@ -895,7 +897,7 @@ button {
 .huge-editorial-title {
   font-family: var(--font-display);
   font-size: clamp(3.2rem, 7.5vw, 8rem);
-  color: var(--teal-light);
+  color: var(--teal-ice);
   line-height: 0.95;
   letter-spacing: 2px;
   white-space: nowrap;
@@ -909,7 +911,7 @@ button {
   top: 0;
   position: absolute;
   width: auto;
-  z-index: 6;
+  z-index: 10;
   pointer-events: none;
   opacity: 1 !important;
   visibility: visible !important;
@@ -952,10 +954,10 @@ button {
   transform: translateX(-50%);
 }
 
-/* --- Imagens: 100% Sólidas, SEM bordas, SEM sombras, nas laterais (flancos) --- */
+/* --- Imagens: 100% Sólidas, SEM bordas, SEM sombras, encaixadas nos vãos entre palavras --- */
 .collage-item.image-item {
   top: 0;
-  z-index: 4;
+  z-index: 3;
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto;
@@ -990,53 +992,77 @@ button {
   left: auto;
 }
 
-/* Proporções equilibradas e posições espalhadas das 6 fotos */
+/* Proporções equilibradas e posições nos vãos das 9 fotos */
 .img-family {
-  left: 4.5vw;
-  width: min(390px, 27vw);
+  left: 5vw;
+  width: min(340px, 23vw);
 }
 .img-family .image-frame {
-  height: min(280px, 19.5vw);
+  height: min(245px, 16.5vw);
 }
 
 .img-burger-close {
-  right: 5.5vw;
-  width: min(350px, 24vw);
+  right: 5vw;
+  width: min(330px, 22vw);
 }
 .img-burger-close .image-frame {
-  height: min(255px, 18vw);
+  height: min(240px, 16vw);
+}
+
+.img-burrata {
+  left: 7vw;
+  width: min(340px, 23vw);
+}
+.img-burrata .image-frame {
+  height: min(245px, 16.5vw);
+}
+
+.img-bar {
+  right: 7vw;
+  width: min(340px, 23vw);
+}
+.img-bar .image-frame {
+  height: min(250px, 17vw);
 }
 
 .img-ingredients {
-  left: 7.5vw;
-  width: min(380px, 26vw);
+  left: 4.5vw;
+  width: min(340px, 23vw);
 }
 .img-ingredients .image-frame {
-  height: min(270px, 19vw);
+  height: min(250px, 17vw);
 }
 
 .img-burger-beer {
-  right: 3.5vw;
-  width: min(370px, 25.5vw);
+  right: 4.5vw;
+  width: min(330px, 22vw);
 }
 .img-burger-beer .image-frame {
-  height: min(265px, 18.5vw);
+  height: min(240px, 16vw);
+}
+
+.img-dough {
+  left: 8vw;
+  width: min(340px, 23vw);
+}
+.img-dough .image-frame {
+  height: min(245px, 16.5vw);
 }
 
 .img-wood-oven {
   left: 5vw;
-  width: min(390px, 27vw);
+  width: min(340px, 23vw);
 }
 .img-wood-oven .image-frame {
-  height: min(275px, 19vw);
+  height: min(250px, 17vw);
 }
 
 .img-restaurant {
-  right: 7vw;
-  width: min(360px, 25vw);
+  right: 6vw;
+  width: min(340px, 23vw);
 }
 .img-restaurant .image-frame {
-  height: min(260px, 18.5vw);
+  height: min(250px, 17vw);
 }
 
 @media (max-width: 768px) {
@@ -1342,7 +1368,7 @@ button {
 .strip-title {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 4.1vw, 5rem);
-  color: var(--color-white);
+  color: var(--teal-ice);
   line-height: 1;
   letter-spacing: 1px;
 }
@@ -1827,7 +1853,7 @@ button {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   text-decoration: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -1860,7 +1886,7 @@ button {
   line-height: 0.82;
   letter-spacing: clamp(4px, 1.4vw, 14px);
   text-transform: uppercase;
-  color: var(--color-white-pure); /* Branco puro sobre o fundo azul teal */
+  color: var(--teal-ice); /* #c0f4ec sobre o fundo azul teal */
   margin: 0;
   white-space: nowrap;
   pointer-events: none;
@@ -1874,7 +1900,7 @@ button {
   font-weight: 700;
   letter-spacing: clamp(6px, 2vw, 22px);
   text-transform: uppercase;
-  color: var(--teal-light);
+  color: var(--teal-ice);
   margin-top: 14px;
 }
 
@@ -1889,7 +1915,7 @@ button {
   border-top: 1px solid rgba(255, 255, 255, 0.22);
   font-family: var(--font-sans);
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--teal-light);
 }
 
 .footer-meta-left {
@@ -1907,7 +1933,7 @@ button {
 }
 
 .footer-meta-right a {
-  color: var(--color-white-pure);
+  color: var(--teal-light);
   text-decoration: none;
   font-weight: 600;
   transition: opacity 0.2s ease;
@@ -2025,6 +2051,15 @@ button {
 
   .img-restaurant { width: 46vw; }
   .img-restaurant .image-frame { height: 30vw; }
+
+  .img-burrata { width: 44vw; }
+  .img-burrata .image-frame { height: 30vw; }
+
+  .img-bar { width: 46vw; }
+  .img-bar .image-frame { height: 30vw; }
+
+  .img-dough { width: 44vw; }
+  .img-dough .image-frame { height: 30vw; }
 }
 
 /* Mobile Devices (<= 768px & 390px) */
@@ -2205,13 +2240,13 @@ button {
     font-family: var(--font-display);
     font-size: clamp(2.4rem, 8vw, 3.2rem);
     letter-spacing: 2px;
-    color: #061815;
+    color: var(--teal-ice);
   }
 
   .nav-tab-header .tab-chevron {
     width: 24px;
     height: 24px;
-    filter: brightness(0);
+    opacity: 0.9;
   }
 
   .nav-tab-panel {
@@ -2676,7 +2711,7 @@ button {
   font-family: var(--font-display);
   font-size: 13px;
   letter-spacing: 1.2px;
-  color: #ffffff;
+  color: var(--teal-light);
   text-transform: uppercase;
   line-height: 1;
 }
@@ -2685,7 +2720,7 @@ button {
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--teal-light);
   line-height: 0.8;
   margin-top: 2px;
 }

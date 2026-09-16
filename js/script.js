@@ -203,76 +203,125 @@ document.addEventListener('DOMContentLoaded', () => {
     const img4 = memoriesSection.querySelector('.img-burger-beer');
     const img5 = memoriesSection.querySelector('.img-wood-oven');
     const img6 = memoriesSection.querySelector('.img-restaurant');
+    const img7 = memoriesSection.querySelector('.img-burrata');
+    const img8 = memoriesSection.querySelector('.img-bar');
+    const img9 = memoriesSection.querySelector('.img-dough');
 
-    // 1. POSIÇÃO INICIAL: A PRIMEIRA FRASE ("HÁ SABORES QUE ALIMENTAM") JÁ ESTÁ NA TELA!
-    // Espaçamento vertical harmonioso e compacto (sem abismos vazios)
-    gsap.set(t1, { y: () => getH() * 0.16 });
-    gsap.set(t2, { y: () => getH() * 0.32 });
-    gsap.set(t3, { y: () => getH() * 0.48 });
+    // Fatores de posição Y inicial para palavras (bem espaçadas, NÃO juntas no começo):
+    const wordFactors = {
+      t1: 0.16,
+      t2: 0.65,
+      t3: 1.20,
+      t4: 1.76,
+      t5: 2.28,
+      t6: 2.80
+    };
 
-    // Primeiras imagens laterais já no viewport
-    gsap.set(img1, { y: () => getH() * 0.15 });
-    gsap.set(img2, { y: () => getH() * 0.32 });
+    // Fatores de posição Y inicial para fotos (encaixadas nos vãos entre palavras):
+    // Vão 1 (entre t1 e t2): img1 (0.28H), img2 (0.40H)
+    // Vão 2 (entre t2 e t3): img7 (0.78H), img8 (0.92H)
+    // Vão 3 (entre t3 e t4): img3 (1.34H), img4 (1.48H)
+    // Vão 4 (entre t4 e t5): img9 (1.90H)
+    // Vão 5 (entre t5 e t6): img5 (2.40H), img6 (2.50H)
+    const imgConfigs = [
+      { el: img1, y: 0.28 },
+      { el: img2, y: 0.40 },
+      { el: img7, y: 0.78 },
+      { el: img8, y: 0.92 },
+      { el: img3, y: 1.34 },
+      { el: img4, y: 1.48 },
+      { el: img9, y: 1.90 },
+      { el: img5, y: 2.40 },
+      { el: img6, y: 2.50 }
+    ].filter(cfg => cfg.el);
 
-    // Segunda frase ("OUTROS CRIAM MEMÓRIAS") e imagens seguintes entram suavemente logo abaixo
-    gsap.set([t4, t5, t6], { y: () => getH() * 1.05 });
-    gsap.set([img3, img4, img5, img6], { y: () => getH() * 1.05 });
+    // 1. Posições iniciais dos textos (bem separados)
+    gsap.set(t1, { y: () => getH() * wordFactors.t1 });
+    gsap.set(t2, { y: () => getH() * wordFactors.t2 });
+    gsap.set(t3, { y: () => getH() * wordFactors.t3 });
+    gsap.set(t4, { y: () => getH() * wordFactors.t4 });
+    gsap.set(t5, { y: () => getH() * wordFactors.t5 });
+    gsap.set(t6, { y: () => getH() * wordFactors.t6 });
+
+    // 2. Posições iniciais das imagens nos vãos
+    imgConfigs.forEach(cfg => {
+      gsap.set(cfg.el, { y: () => getH() * cfg.y });
+    });
 
     const memoriesTl = gsap.timeline({
       scrollTrigger: {
         trigger: memoriesSection,
         start: 'top top',
-        end: () => (window.innerWidth < 768 ? '+=700' : '+=1100'),
+        end: () => (window.innerWidth < 768 ? '+=480' : '+=830'),
         pin: true,
-        scrub: 0.5,
+        scrub: 0.6,
         anticipatePin: 0,
         invalidateOnRefresh: true
       }
     });
 
     // -------------------------------------------------------------
-    // CHOREOGRAFIA DOS TEXTOS EM GRUPOS COESOS (SEM VAZIOS)
+    // REGRA 1: ZERO PARALLAX ENTRE IMAGENS
+    // Todas as imagens se movem juntas na mesma velocidade e tempo.
+    // O parallax ocorre exclusivamente entre o conjunto de imagens e os textos.
     // -------------------------------------------------------------
+    const allImages = imgConfigs.map(cfg => cfg.el);
+    const imgTravelMultiplier = 2.10;
 
-    // Grupo 1: "HÁ SABORES QUE ALIMENTAM" sobem juntos suavemente
-    memoriesTl.to(t1, { y: () => -getH() * 0.5, ease: 'none', duration: 18 }, 0);
-    memoriesTl.to(t2, { y: () => -getH() * 0.5, ease: 'none', duration: 18 }, 2);
-    memoriesTl.to(t3, { y: () => -getH() * 0.5, ease: 'none', duration: 18 }, 4);
-
-    // Grupo 2: "OUTROS CRIAM MEMÓRIAS" entram coesos e ancoram com espaçamento perfeito
-    memoriesTl.fromTo(t4, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.18, ease: 'power1.out', duration: 20 }, 
-      10
-    );
-
-    memoriesTl.fromTo(t5, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.34, ease: 'power1.out', duration: 20 }, 
-      12
-    );
-
-    memoriesTl.fromTo(t6, 
-      { y: () => getH() * 1.05 }, 
-      { y: () => getH() * 0.50, ease: 'power1.out', duration: 20 }, 
-      14
-    );
+    memoriesTl.to(allImages, {
+      y: (index) => getH() * (imgConfigs[index].y - imgTravelMultiplier),
+      ease: 'none',
+      duration: 100
+    }, 0);
 
     // -------------------------------------------------------------
-    // CHOREOGRAFIA DAS IMAGENS LATERAIS (FLANCOS)
+    // REGRA 2: PARALLAX ENTRE PALAVRAS E IMAGENS + CONVERGÊNCIA DAS PALAVRAS
+    // As palavras iniciam bem espaçadas (não juntas no começo)
+    // e deslizam pelos vãos, com OUTROS, CRIAM e MEMÓRIAS se juntando
+    // harmonicamente no centro ao final da narrativa.
     // -------------------------------------------------------------
 
-    // Imagens do primeiro grupo sobem
-    memoriesTl.to(img1, { y: () => -getH() - 100, ease: 'none', duration: 18 }, 0);
-    memoriesTl.to(img2, { y: () => -getH() - 100, ease: 'none', duration: 20 }, 0);
+    // 1. "HÁ SABORES" (Inicia em 0.16H e sobe pelo topo)
+    memoriesTl.to(t1, { 
+      y: () => -getH() * 0.40, 
+      ease: 'none', 
+      duration: 32 
+    }, 0);
 
-    // Imagens intermediárias
-    memoriesTl.fromTo(img3, { y: () => getH() * 1.05 }, { y: () => -getH() - 80, ease: 'none', duration: 22 }, 8);
-    memoriesTl.fromTo(img4, { y: () => getH() * 1.05 }, { y: () => -getH() - 80, ease: 'none', duration: 22 }, 10);
+    // 2. "QUE" (Inicia em 0.65H e sobe pelo centro)
+    memoriesTl.to(t2, { 
+      y: () => -getH() * 0.40, 
+      ease: 'none', 
+      duration: 48 
+    }, 0);
 
-    // Imagens finais se acomodam com a frase final
-    memoriesTl.fromTo(img5, { y: () => getH() * 1.05 }, { y: () => getH() * 0.26, ease: 'power1.out', duration: 20 }, 14);
-    memoriesTl.fromTo(img6, { y: () => getH() * 1.05 }, { y: () => getH() * 0.34, ease: 'power1.out', duration: 20 }, 16);
+    // 3. "ALIMENTAM" (Inicia em 1.20H e sobe pelo centro)
+    memoriesTl.to(t3, { 
+      y: () => -getH() * 0.40, 
+      ease: 'none', 
+      duration: 64 
+    }, 0);
+
+    // 4. "OUTROS" (Inicia em 1.76H e ancora no terço superior em 0.28H)
+    memoriesTl.to(t4, { 
+      y: () => getH() * 0.28, 
+      ease: 'power1.out', 
+      duration: 82 
+    }, 0);
+
+    // 5. "CRIAM" (Inicia em 2.28H e se junta logo abaixo de OUTROS em 0.44H)
+    memoriesTl.to(t5, { 
+      y: () => getH() * 0.44, 
+      ease: 'power1.out', 
+      duration: 82 
+    }, 0);
+
+    // 6. "MEMÓRIAS" (Inicia em 2.80H e se junta logo abaixo de CRIAM em 0.60H)
+    memoriesTl.to(t6, { 
+      y: () => getH() * 0.60, 
+      ease: 'power1.out', 
+      duration: 82 
+    }, 0);
   }
 
 });
